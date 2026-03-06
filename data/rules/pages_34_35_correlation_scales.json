@@ -1,0 +1,226 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Pages 34-35",
+    "title": "환자 증상간 상관성/인과성 반영 기준 예시 (Correlation/Causality Constraint Scales) — continued",
+    "description": "Continuation of constraint pair tables. Page 34 top completes CP_14 (체력강약-피로감) from pages 32-33 file. Page 35 bottom CP_17 이명(강도) option 5 description continues onto page 36.",
+    "continuation_from_previous": "CP_14 (체력강약 — 피로감) options 3-5 completed at top of page 34. Already captured in pages_32_33_correlation_scales.json.",
+    "continues_to_next": "CP_17 (이명 빈도-강도) option 5 right side description ends on page 36.",
+    "shading_rule": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임"
+  },
+
+  "constraint_pairs": [
+    {
+      "pair_id": "CP_15",
+      "title": "신체통, 근육통 — 신중(身重) 여부",
+      "title_en": "Body Pain / Muscle Pain — Heaviness of Body (身重)",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "신체통, 근육통 여부",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 몸살 기운이나 전신 통증을 전혀 느끼지 않음."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 일시적으로 몸이 뻐근하거나 약간 무거운 느낌이 들지만, 휴식 후 완전히 회복됨. 일상생활 지장 없음."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 특별한 활동 없이도 몸이 찌뿌둥하거나 무겁고(예: 젖은 솜이 가라앉는 느낌), 여기저기 가벼운 통증이 느껴짐. 활동에 약간의 불편감을 줌."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 전신 근육통이나 몸살 기운이 뚜렷하며, 몸이 매우 무겁게 느껴져 활동하기가 힘듦. 집중력 저하 등을 동반하여 일상생활에 제약을 받음."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 극심한 전신 통증이나 몸살 기운, 혹은 몸을 가누기 힘들 정도의 무거움으로 인해, 기본적인 일상 활동조차 어려운 상태."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "신중(身重) 여부",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 몸이 상쾌함"
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 많이 걷거나 피곤할 때 잠깐 몸이 무거우며, 휴식 후 완전히 회복됨."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 피곤한 날 몸이 무거우며, 일상 중 불편감을 느낌."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 몸이 무겁고 불편함을 뚜렷하게 느낌."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 몸이 매우 무겁고 삶의 질에 큰 지장을 줌."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "No body pain with severe heaviness is contradictory",
+          "when_left": {"variable": "신체통, 근육통 여부", "options": [1]},
+          "then_right_excluded": {"variable": "신중(身重) 여부", "options": [4, 5]},
+          "reason": "몸살 기운이 전혀 없는데 몸이 심하게 무거울 수 없음."
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "Levels should be within ±1 of each other. 신체통↑ → 신중↑. 통증=1(없음) → 신중=1,2. 통증=5(매우심함) → 신중=4,5."
+    },
+
+    {
+      "pair_id": "CP_16",
+      "title": "피부 건조도 — 얼굴 광택",
+      "title_en": "Skin Dryness — Facial Luster/Glow",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "피부 건조도",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "정상, 피부에 당김이나 건조함이 전혀 없으며, 피부결이 매끄럽고 편안한 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 겉으로는 괜찮아 보이나, 세안 후나 특정 환경에서 피부 속이 당기는 느낌(속당김)이 듦."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 피부 표면이 당기는 것이 뚜렷하게 느껴지며, 입가나 뺨 주변에 미세한 각질이 하얗게 일어나기 시작함."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 피부가 건조하여 각질이 눈에 띄게 일어나고 피부가 거칠어짐."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 피부가 매우 건조하여, 하얀 각질을 넘어 피부 표면이 갈라짐(균열)"
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "얼굴 광택",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "윤기없음, 얼굴에 생기나 광택이 전혀 없고, 피부가 푸석푸석해 보이며 메마른 느낌을 줌."
+          },
+          {
+            "option_number": 2,
+            "description": "윤기가 약간 있음, 피부가 전반적으로 칙칙하고 생기가 부족하지만, 아주 약간의 광택은 남아있는 상태."
+          },
+          {
+            "option_number": 3,
+            "description": "윤기가 보통, 피부에 자연스럽고 건강한 광택이 도는 상태. 푸석하지도, 번들거리지도 않는 평균적인 상태."
+          },
+          {
+            "option_number": 4,
+            "description": "윤기가 충만함, 피부가 건강하게 빛나며, 맑고 생기가 넘쳐 보임. 촉촉하고 광택이 도는 상태."
+          },
+          {
+            "option_number": 5,
+            "description": "윤기가 매우 충만함, 얼굴에서 빛이 나는 것처럼 광택이 매우 풍부하고, 누가 봐도 아주 건강하고 활력이 넘쳐 보이는 상태."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Very dry skin with full luster is contradictory",
+          "when_left": {"variable": "피부 건조도", "options": [5]},
+          "then_right_excluded": {"variable": "얼굴 광택", "options": [4, 5]},
+          "reason": "피부 표면이 갈라질 정도로 건조하면 윤기가 충만할 수 없음."
+        }
+      ],
+
+      "correlation_type": "inverse_proportional",
+      "enforcement": "건조도↑ → 광택↓ (inverse relationship). 건조도=1(정상) → 광택=3,4,5. 건조도=5(매우건조) → 광택=1,2. Within inverse ±1 level."
+    },
+
+    {
+      "pair_id": "CP_17",
+      "title": "이명(빈도) — 이명(강도)",
+      "title_en": "Tinnitus Frequency — Tinnitus Intensity",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "section_header": "통증의 빈도와 강도관계",
+
+      "left_variable": {
+        "variable": "이명(빈도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 이명을 전혀 느끼지 않음."
+          },
+          {
+            "option_number": 2,
+            "description": "일시적, 매우 피곤하거나, 아주 조용한 곳에 있을 때만 잠깐 나타나며, 금방 사라짐."
+          },
+          {
+            "option_number": 3,
+            "description": "간헐적, 주기적으로(주 1~3회) 이명이 느껴지지만, 일상생활에 큰 지장은 없음."
+          },
+          {
+            "option_number": 4,
+            "description": "지속적, 거의 매일 이명을 느끼며, 이로 인해 소리나 증상에 신경이 쓰이고 제약을 받음."
+          },
+          {
+            "option_number": 5,
+            "description": "만성적, 깨어있는 시간 내내 이명이 지속되어, 소리, 수면 등 삶의 질 전반에 큰 영향을 줌."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "이명(강도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 불편감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 불편감, 이명 소리가 매우 작아서, 아주 조용한 환경에서 집중할 때만 의식되는 수준."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 불편감, 일상적인 소음 속에서도 이명이 의식되며, 이로 인해 집중력이 다소 저하되고 약간의 신경이 쓰임."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 불쾌감, 이명 소리가 커서 다른 소리를 듣는 데 방해가 되거나, 수면을 방해하고, 뚜렷한 스트레스를 유발함."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한 불쾌감, 참을 수 없을 정도로 이명 소리가 크거나 거슬려, 다른 생각이나 활동이 불가능하고, 극심한 고통이나 불안감을 유발함."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "No tinnitus frequency with severe intensity is contradictory",
+          "when_left": {"variable": "이명(빈도)", "options": [1]},
+          "then_right_excluded": {"variable": "이명(강도)", "options": [4, 5]},
+          "reason": "이명이 전혀 없으면 심한 강도일 수 없음."
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "빈도↑ → 강도↑. 없음(left=1) ↔ 없음(right=1) 반드시 쌍으로. Levels should be within ±1 of each other."
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Pages 28-29",
+    "title": "환자 증상간 상관성/인과성 반영 기준 예시 (Correlation/Causality Constraint Scales)",
+    "description": "Complete 5-point scale definitions for correlated variable pairs. GREEN-SHADED cells in the original PDF indicate option combinations that are INCOMPATIBLE (양립이 어려움). When the left variable has a green-shaded option, the corresponding green-shaded option on the right MUST NOT coexist in the same patient.",
+    "shading_rule": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임 = Shaded left and right cells are INCOMPATIBLE and must not be generated together. The row-alignment in the original table shows which left options conflict with which right options."
+  },
+
+  "constraint_pairs": [
+    {
+      "pair_id": "CP_01",
+      "title": "발열, 오한 — 한열왕래",
+      "title_en": "Fever & Chills — Alternating Fever-Chills",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "explanation": "한열왕래 means alternating between chills and fever. If a patient has PURE fever or PURE chills, they should NOT simultaneously have 한열왕래 (which is the alternating pattern). The green shading shows that high fever(left) + alternating pattern(right) at the same horizontal row are contradictory.",
+
+      "left_variables": [
+        {
+          "variable": "발열",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "없음, 35도 이하. 발열 증상이 전혀 없음. (저체온)"
+            },
+            {
+              "option_number": 2,
+              "description": "발열 증상이 전혀 없음. (정상 체온)"
+            },
+            {
+              "option_number": 3,
+              "description": "뚜렷한 열감이 느껴지며, 이로 인해 피로감이나 불편감이 동반됨. (약 37.4°C ~ 37.9°C)"
+            },
+            {
+              "option_number": 4,
+              "description": "몸이 뜨겁다고 느껴지고, 이로 인한 전신 근육통이나 두통이 동반됨. 활동이 힘들어 눕고 싶다는 생각이 듦. (약 38°C ~ 39.9°C)"
+            },
+            {
+              "option_number": 5,
+              "description": "몸이 불덩이처럼 뜨겁고, 어지러움이나 혼미함을 동반할 수 있으며, 일상생활이 불가능한 상태. (약 40°C 이상)"
+            }
+          ]
+        },
+        {
+          "variable": "오한",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "오한 증상이 전혀 없음."
+            },
+            {
+              "option_number": 2,
+              "description": "경미하게 춥다고 느껴져, 옷을 껴입거나 이불을 덮으려고 함. 가벼운 몸살 기운이 동반될 수 있음."
+            },
+            {
+              "option_number": 3,
+              "description": "뚜렷하게 춥다고 느껴져, 옷을 껴입거나 이불을 덮어야 함. 몸살 기운이 동반될 수 있음."
+            },
+            {
+              "option_number": 4,
+              "description": "심함, 열이 나는데도 불구하고, 몸이 떨릴 정도로 춥다고 느껴짐."
+            },
+            {
+              "option_number": 5,
+              "description": "매우 심함, 따뜻한 환경에서도 극심한 추위를 느낌. 이가 부딪히기도 하며, 일상적인 활동이 불가능한 상태."
+            }
+          ]
+        }
+      ],
+
+      "right_variable": {
+        "variable": "한열왕래",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 오한과 발열이 번갈아 나타나는 증상은 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "경미하게 춥다가 덥는 현상이 가끔 일어남."
+          },
+          {
+            "option_number": 3,
+            "description": "몸이 으슬으슬 춥다가, 잠시 후에는 덥다고 느껴지는 등, 체온의 조절이 불안정한 불편감이 있음."
+          },
+          {
+            "option_number": 4,
+            "description": "뚜렷한 오한(추위)이 느껴져 옷을 껴입고 싶다가, 잠시 후에는 뚜렷한 발열(더위)이 느껴져 답답해지는 증상이 번갈아 나타남."
+          },
+          {
+            "option_number": 5,
+            "description": "몸이 떨릴 정도의 오한이 명확하게 나타난 후, 땀이 날 정도의 뚜렷한 발열이 이어지는 증상이 반복됨. 일상 활동에 지장을 줌."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Pure fever + alternating pattern cannot coexist",
+          "when_left": {"variable": "발열", "options": [3, 4, 5]},
+          "then_right_excluded": {"variable": "한열왕래", "options": [2, 3, 4, 5]},
+          "reason": "발열이 있으면 한열왕래가 동시에 있으면 안됨. 한열왕래는 발열과 오한이 번갈아 나타나는 별도 패턴."
+        },
+        {
+          "rule": "Pure chills + alternating pattern cannot coexist",
+          "when_left": {"variable": "오한", "options": [2, 3, 4, 5]},
+          "then_right_excluded": {"variable": "한열왕래", "options": [2, 3, 4, 5]},
+          "reason": "오한이 있으면 한열왕래가 동시에 있으면 안됨. 경미한 오한(2)도 포함."
+        }
+      ],
+
+      "compatible_note": "발열=1,2 + 한열왕래=1 is fine. 발열+오한 can co-occur with mild levels. 한열왕래 is a SEPARATE clinical pattern from standalone fever or chills."
+    },
+
+    {
+      "pair_id": "CP_02",
+      "title": "콧물량 — 콧물색",
+      "title_en": "Runny Nose Amount — Runny Nose Color",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "explanation": "The amount of runny nose and its color are correlated. No runny nose = no color. As amount increases, color tends to progress from clear → white → yellow. The green-shaded rows show mismatched severity levels that should not coexist.",
+
+      "left_variable": {
+        "variable": "콧물량",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음"
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 콧물이 약간 흐르지만, 휴지가 거의 필요 없거나 가끔 한두 번 닦아내는 정도."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 콧물이 계속 흘러 휴지를 자주 사용하게 되며, 코를 푸는 횟수가 늘어남."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 콧물이 멈추지 않고 계속 흘러내려 휴지를 달고 살아야 하며, 코를 풀어도 금방 다시 참."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 콧물이 수도꼭지처럼 쏟아져 휴지로 감당하기 어려울 정도. 코 주변 피부가 헐거나 집중이 불가능함."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "콧물색",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "투명 콧물이 나옴."
+          },
+          {
+            "option_number": 2,
+            "description": "콧물이 점차 끈적해지기 시작하며, 흰색의 콧물이 나옴."
+          },
+          {
+            "option_number": 3,
+            "description": "콧물이 누렇고 끈적하게 변함."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "No runny nose = no color at all",
+          "when_left": {"variable": "콧물량", "options": [1]},
+          "then_right_excluded": {"variable": "콧물색", "options": [1, 2, 3]},
+          "action": "skip_generation",
+          "reason": "콧물이 없으면 콧물색 자체를 생성하지 않음"
+        }
+      ],
+
+      "progression_pattern": "콧물량↑ 일수록 콧물색이 투명→흰색→누런색으로 진행하는 경향"
+    },
+
+    {
+      "pair_id": "CP_03",
+      "title": "코막힘 — 후각감퇴",
+      "title_en": "Nasal Congestion — Olfactory Loss",
+      "explanation": "Nasal congestion and olfactory loss are positively correlated. As congestion worsens, smell ability decreases. The levels are aligned 1:1 in the table (same row = same severity).",
+
+      "left_variable": {
+        "variable": "코막힘",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 코막힘이 전혀 없음. 코로 숨쉬기가 매우 편안함."
+          },
+          {
+            "option_number": 2,
+            "description": "코막힘이 약간 있으나 코로 숨쉬기 편함"
+          },
+          {
+            "option_number": 3,
+            "description": "코막힘이 있고 숨쉬기 약간 불편함"
+          },
+          {
+            "option_number": 4,
+            "description": "코막힘이 분명하게 느껴지고 숨쉬기 불편함"
+          },
+          {
+            "option_number": 5,
+            "description": "양쪽 코가 심하게 막혀 코로 숨쉬기가 매우 힘듦."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "후각감퇴",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "후각에 문제 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "후각이 감퇴되었지만, 냄새를 대부분 맡을 수 있음"
+          },
+          {
+            "option_number": 3,
+            "description": "후각이 감퇴되었지만, 냄새를 맡기도 하고 못맡기도 함"
+          },
+          {
+            "option_number": 4,
+            "description": "후각이 감퇴되었지만, 강열한 냄새는 맡을 수 있음."
+          },
+          {
+            "option_number": 5,
+            "description": "후각이 감퇴됨. 냄새를 전혀 맡지 못함"
+          }
+        ]
+      },
+
+      "correlation_type": "positive_proportional",
+      "incompatible_combinations": [
+        {
+          "rule": "No congestion = no smell loss",
+          "when_left": {"variable": "코막힘", "options": [1]},
+          "then_right_excluded": {"variable": "후각감퇴", "options": [2, 3, 4, 5]},
+          "reason": "코막힘이 없는데 후각이 감퇴될 수 없음. 경미한 감퇴(2)도 포함."
+        }
+      ],
+      "enforcement": "Levels should be within ±1 of each other. E.g., 코막힘=3 → 후각감퇴 should be 2, 3, or 4."
+    },
+
+    {
+      "pair_id": "CP_04",
+      "title": "나이 — 직업, 현병력, 약물력, 술, 담배",
+      "title_en": "Age — Occupation, Medical History, Medications, Alcohol, Smoking",
+      "explanation": "Age restricts what occupations, diseases, and habits are clinically plausible. This is a multi-variable constraint where age bracket determines allowable values for several other variables.",
+
+      "left_variable": {
+        "variable": "나이",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "소아·청소년: ~ 19세 이하",
+            "age_range": {"min": 0, "max": 19}
+          },
+          {
+            "option_number": 2,
+            "description": "청년: 20 ~ 39세",
+            "age_range": {"min": 20, "max": 39}
+          },
+          {
+            "option_number": 3,
+            "description": "중년: 40 ~ 54세",
+            "age_range": {"min": 40, "max": 54}
+          },
+          {
+            "option_number": 4,
+            "description": "장년: 55 ~ 69세",
+            "age_range": {"min": 55, "max": 69}
+          },
+          {
+            "option_number": 5,
+            "description": "노년: 70세 이상",
+            "age_range": {"min": 70, "max": 120}
+          }
+        ]
+      },
+
+      "right_variables": [
+        {
+          "variable": "직업",
+          "options": [
+            {"option_number": 1, "description": "관리직"},
+            {"option_number": 2, "description": "전문직"},
+            {"option_number": 3, "description": "사무직"},
+            {"option_number": 4, "description": "서비스직"},
+            {"option_number": 5, "description": "판매직"},
+            {"option_number": 6, "description": "농/어업"},
+            {"option_number": 7, "description": "기능직"},
+            {"option_number": 8, "description": "장치, 기계조작 및 조립직"},
+            {"option_number": 9, "description": "단순노무"},
+            {"option_number": 10, "description": "직업군인"},
+            {"option_number": 11, "description": "(기타) 학생, 주부, 무직, 은퇴"}
+          ]
+        },
+        {
+          "variable": "고혈압",
+          "options": [
+            {"option_number": 1, "description": "없음 (Absent) 현재 고혈압을 진단받아 앓고 있지 않은 경우"},
+            {"option_number": 2, "description": "있음 (Present) 현재 고혈압을 진단받아 앓고 있는 경우"}
+          ]
+        },
+        {
+          "variable": "당뇨",
+          "options": [
+            {"option_number": 1, "description": "없음 (Absent) 현재 당뇨를 진단받아 앓고 있지 않은 경우"},
+            {"option_number": 2, "description": "있음 (Present) 현재 당뇨를 진단받아 앓고 있는 경우"}
+          ]
+        },
+        {
+          "variable": "이상지질혈증",
+          "options": [
+            {"option_number": 1, "description": "없음 (Absent) 현재 이상지질혈증을 진단받아 앓고 있지 않은 경우"},
+            {"option_number": 2, "description": "있음 (Present) 현재 이상지질혈증을 진단받아 앓고 있는 경우"}
+          ]
+        },
+        {
+          "variable": "혈압약",
+          "options": [
+            {"option_number": 1, "description": "혈압약을 복용하고 있지 않다."},
+            {"option_number": 2, "description": "혈압약을 복용하고 있다."}
+          ]
+        },
+        {
+          "variable": "당뇨약",
+          "options": [
+            {"option_number": 1, "description": "당뇨약을 복용하고 있지 않다."},
+            {"option_number": 2, "description": "당뇨약을 복용하고 있다."}
+          ]
+        },
+        {
+          "variable": "이상지질혈증약",
+          "options": [
+            {"option_number": 1, "description": "이상지질혈증약을 복용하고 있지 않다."},
+            {"option_number": 2, "description": "이상지질혈증약을 복용하고 있다."}
+          ]
+        }
+      ],
+
+      "incompatible_combinations": [
+        {
+          "rule": "Minors cannot have jobs",
+          "when_left": {"variable": "나이", "options": [1]},
+          "then_right_forced": {"variable": "직업", "forced_option": 11},
+          "reason": "미성년자(19세 이하)는 직업을 가질 수 없음"
+        },
+        {
+          "rule": "Minors cannot have chronic diseases",
+          "when_left": {"variable": "나이", "options": [1]},
+          "then_right_forced": [
+            {"variable": "고혈압", "forced_option": 1},
+            {"variable": "당뇨", "forced_option": 1},
+            {"variable": "이상지질혈증", "forced_option": 1}
+          ],
+          "reason": "미성년자는 만성병을 가질 수 없음"
+        },
+        {
+          "rule": "Minors cannot take chronic disease medications",
+          "when_left": {"variable": "나이", "options": [1]},
+          "then_right_forced": [
+            {"variable": "혈압약", "forced_option": 1},
+            {"variable": "당뇨약", "forced_option": 1},
+            {"variable": "이상지질혈증약", "forced_option": 1}
+          ],
+          "reason": "미성년자는 만성병 약물을 복용할 수 없음"
+        }
+      ]
+    }
+  ]
+}

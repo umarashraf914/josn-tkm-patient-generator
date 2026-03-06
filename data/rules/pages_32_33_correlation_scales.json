@@ -1,0 +1,381 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Pages 32-33",
+    "title": "환자 증상간 상관성/인과성 반영 기준 예시 (Correlation/Causality Constraint Scales) — continued",
+    "description": "Continuation of constraint pair tables. Page 32 top completes CP_09 (입맛-의욕저하) from pages 30-31 file. Page 33 bottom starts CP_14 (체력강약-피로감) which continues onto page 34.",
+    "continuation_from_previous": "CP_09 (입맛 — 의욕저하) option 5 for both sides completed at top of page 32. Already captured in pages_30_31_correlation_scales.json (now updated with full descriptions).",
+    "continues_to_next": "CP_14 (체력강약 — 피로감) options 3-5 for both sides appear on page 34.",
+    "shading_rule": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임"
+  },
+
+  "constraint_pairs": [
+    {
+      "pair_id": "CP_10",
+      "title": "1일 식사횟수 — 식사규칙성",
+      "title_en": "Daily Meal Count — Meal Regularity",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "1일 식사횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "하루 식사 횟수가 1회입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "하루 식사 횟수가 2회입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "하루 식사 횟수가 3회입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "하루 식사 횟수가 4회입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "하루 식사 횟수가 5회 이상이며, 소식(小食)으로 조금씩 자주 먹는 편입니다."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "식사규칙성",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 규칙적"
+          },
+          {
+            "option_number": 2,
+            "description": "규칙적, 거의 정해진 시간에 규칙적으로 식사함."
+          },
+          {
+            "option_number": 3,
+            "description": "왔다갔다 함. 식사 시간이 규칙적이다가 불규칙적이다가 함"
+          },
+          {
+            "option_number": 4,
+            "description": "불규칙, 주로 아침을 거르고 점심, 저녁에 과식하는 경향."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 불규칙, 식사 시간이 매일 다르고 폭식과 결식을 반복함."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "1 meal per day is incompatible with very regular",
+          "when_left": {"variable": "1일 식사횟수", "options": [1]},
+          "then_right_excluded": {"variable": "식사규칙성", "options": [1]},
+          "reason": "하루 1회 식사는 매우 규칙적일 수 없음."
+        }
+      ],
+
+      "correlation_type": "contextual",
+      "enforcement": "식사횟수=3 → 규칙적(1,2) 경향. 식사횟수=1 → 불규칙(4,5). 식사횟수=5(소식) → 규칙적일 수도, 불규칙적일 수도 있음."
+    },
+
+    {
+      "pair_id": "CP_11",
+      "title": "배변 후 불편감 — 배변 후 잔변감(강도)",
+      "title_en": "Post-Defecation Discomfort — Post-Defecation Residual Stool Sensation (Intensity)",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "배변 후 불편감",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "배변 후 느낌이 매우 상쾌하다."
+          },
+          {
+            "option_number": 2,
+            "description": "배변 후 느낌이 상쾌하다."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 배변 후 느낌이 불쾌하지도 상쾌하지도 않다."
+          },
+          {
+            "option_number": 4,
+            "description": "배변 후 느낌이 불쾌하고 어딘가 모르게 시원치 않다."
+          },
+          {
+            "option_number": 5,
+            "description": "배변 후 느낌이 매우 불쾌하고 시원치 않다."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "배변 후 잔변감(강도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 배변 후 불편감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 불편감, 약간 덜 본 것 같은 찝찝한 느낌이 들지만, 금방 잊어버리는 수준."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 불편감, 변이 남아있는 느낌이 분명하게 느껴져, 화장실에 더 앉아있게 되거나 일상 중에도 신경이 쓰임."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 불쾌감, 다시 화장실에 가고 싶다는 생각이 들 정도로 불쾌감이 심하며, 복부 팽만감이나 불편함을 동반함."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한 불쾌감, 화장실을 다녀와도 전혀 변을 보지 않은 것처럼 느껴질 정도로 극심한 불쾌감을 느끼며, 아무것도 할 수 없는 상태."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Very refreshed post-defecation with residual sensation is contradictory",
+          "when_left": {"variable": "배변 후 불편감", "options": [1]},
+          "then_right_excluded": {"variable": "배변 후 잔변감(강도)", "options": [3, 4, 5]},
+          "reason": "배변 후 매우 상쾌한데 중등도 이상 잔변감이 있을 수 없음."
+        },
+        {
+          "rule": "Refreshed post-defecation with moderate+ residual is contradictory",
+          "when_left": {"variable": "배변 후 불편감", "options": [2]},
+          "then_right_excluded": {"variable": "배변 후 잔변감(강도)", "options": [3, 4, 5]},
+          "reason": "상쾌한데 중등도 이상 잔변감이 있을 수 없음."
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "Levels should be within ±1 of each other. 불편감↑ → 잔변감↑. 배변후불편감=1(매우상쾌) → 잔변감=1,2. 배변후불편감=5(매우불쾌) → 잔변감=4,5."
+    },
+
+    {
+      "pair_id": "CP_12",
+      "title": "1일 소변 횟수 — 야간뇨 횟수",
+      "title_en": "Daily Urination Count (incl. nocturia) — Nocturia Count",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "1일 소변 횟수(야간뇨 포함)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "1일 소변 횟수가 0회에서 2회 사이이다."
+          },
+          {
+            "option_number": 2,
+            "description": "1일 소변 횟수가 3회에서 4회 사이이다."
+          },
+          {
+            "option_number": 3,
+            "description": "1일 소변 횟수가 5회에서 7회 사이이다."
+          },
+          {
+            "option_number": 4,
+            "description": "1일 소변 횟수가 8회에서 10회 사이이다."
+          },
+          {
+            "option_number": 5,
+            "description": "1일 소변 횟수가 11회 이상이다."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "야간뇨 횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "정상, 야간뇨 횟수가 0회이다."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 야간뇨 횟수가 1회이다."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 야간뇨 횟수가 2회이다."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 야간뇨 횟수가 3회에서 4회 사이이다."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 야간뇨 횟수가 5회 이상이다."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Very low total urination cannot have high nocturia",
+          "when_left": {"variable": "1일 소변 횟수(야간뇨 포함)", "options": [1]},
+          "then_right_excluded": {"variable": "야간뇨 횟수", "options": [3, 4, 5]},
+          "reason": "총 소변이 0~2회인데 야간뇨만 2회 이상일 수 없음 (야간뇨는 총 소변에 포함됨)."
+
+        }
+      ],
+
+      "correlation_type": "subset_constraint",
+      "enforcement": "야간뇨 is a SUBSET of total urination. Total↑ → nocturia can be higher. But nocturia can never exceed total. Low total (1,2) → low nocturia only."
+    },
+
+    {
+      "pair_id": "CP_13",
+      "title": "소변 후 불편감 — 배뇨 후 잔뇨감(강도)",
+      "title_en": "Post-Urination Discomfort — Post-Urination Residual Urine Sensation (Intensity)",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "소변 후 불편감",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "소변 후 느낌이 매우 상쾌하다."
+          },
+          {
+            "option_number": 2,
+            "description": "소변 후 느낌이 상쾌하다."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 소변 후 느낌이 불쾌하지도 상쾌하지도 않다."
+          },
+          {
+            "option_number": 4,
+            "description": "소변 후 느낌이 불쾌하다."
+          },
+          {
+            "option_number": 5,
+            "description": "소변 후 느낌이 매우 불쾌하다."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "배뇨 후 잔뇨감(강도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 잔뇨감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 잔뇨감, 소변이 약간 덜 나온 것 같은 찝찝한 느낌이 들지만, 금방 잊어버리는 수준."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 잔뇨감, 소변이 남아있는 느낌이 분명하게 느껴져, 화장실에 더 머무르거나 일상 중에도 신경이 쓰임."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 잔뇨감, 소변을 본 직후에도 다시 화장실에 가고 싶다는 생각이 들 정도로 잔뇨감이 심하며, 아랫배의 불편함을 동반함."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한잔뇨감, 소변을 전혀 보지 않은 것처럼 느껴질 정도로 극심한 불쾌감을 느끼며, 아무것도 할 수 없는 상태."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Very refreshed post-urination with residual sensation is contradictory",
+          "when_left": {"variable": "소변 후 불편감", "options": [1]},
+          "then_right_excluded": {"variable": "배뇨 후 잔뇨감(강도)", "options": [3, 4, 5]},
+          "reason": "소변 후 매우 상쾌한데 중등도 이상 잔뇨감이 있을 수 없음."
+        },
+        {
+          "rule": "Refreshed post-urination with moderate+ residual is contradictory",
+          "when_left": {"variable": "소변 후 불편감", "options": [2]},
+          "then_right_excluded": {"variable": "배뇨 후 잔뇨감(강도)", "options": [3, 4, 5]},
+          "reason": "상쾌한데 중등도 이상 잔뇨감이 있을 수 없음."
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "Levels should be within ±1 of each other. 불편감↑ → 잔뇨감↑. 소변후불편감=1(매우상쾌) → 잔뇨감=1,2. 소변후불편감=5(매우불쾌) → 잔뇨감=4,5."
+    },
+
+    {
+      "pair_id": "CP_14",
+      "title": "체력강약 — 피로감",
+      "title_en": "Physical Strength — Fatigue Level",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "note": "Options 3-5 continue on page 34. Descriptions below include full text from page 34 PDF extraction.",
+
+      "left_variable": {
+        "variable": "체력강약",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 약함, 항상 무기력하고 조금만 움직여도 숨이 참. 얼굴이 창백하고 어지럼증을 자주 느낌."
+          },
+          {
+            "option_number": 2,
+            "description": "약한 편, 평소 기운이 없고 쉽게 피로해짐. 식욕이 없거나 식후에 잘 졸리고, 목소리에 힘이 없음."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 일상생활에 필요한 체력을 가지고 있으며, 피로하면 휴식 후 잘 회복됨."
+          },
+          {
+            "option_number": 4,
+            "description": "강한 편, 활력이 넘치고, 웬만해서는 잘 지치지 않음. 잔병치레가 거의 없고 회복이 빠름."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 강함, 체격이 건실하고 에너지가 넘쳐 주체하기 어려울 정도. 목소리가 매우 크고 우렁참."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "피로감",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "거의 없음, 피로를 거의 느끼지 않으며, 아침에 일어날 때 몸이 개운하고 활력이 넘치는 최상의 컨디션 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 일상생활에 큰 지장은 없으나 가벼운 피로가 있음."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 아침에 일어날 때부터 개운하지 않고, 하루 종일 전반적인 피로감이 지속됨. 일상생활은 가능하지만 의욕이나 집중력이 다소 저하됨."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 피로감이 심하여 뚜렷한 집중력 저하를 느끼며, 업무나 학업 등 일상적인 활동을 수행하는 것이 힘겹게 느껴짐."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 극심한 피로와 무기력감으로 인해 일상생활을 영위하는 것 자체가 어려움. 잠을 자거나 푹 쉬어도 피로가 전혀 회복되지 않는 느낌."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Very weak + no fatigue is contradictory",
+          "when_left": {"variable": "체력강약", "options": [1]},
+          "then_right_excluded": {"variable": "피로감", "options": [1]},
+          "reason": "매우 약한 체력인데 피로가 거의 없을 수 없음."
+        }
+      ],
+
+      "correlation_type": "inverse_proportional",
+      "enforcement": "체력↑ → 피로감↓ (inverse relationship). 체력강약=1(매우약) → 피로감=4,5(심함이상). 체력강약=5(매우강) → 피로감=1,2(거의없음~경미). Within inverse ±1 level."
+    }
+  ]
+}

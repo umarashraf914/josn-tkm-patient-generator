@@ -26,13 +26,15 @@ import random
 
 # KTAS Safe Ranges
 KTAS_LIMITS = {
-    'sbp': {'min': 90, 'max': 180, 'safe_range': (95, 170)},
+    'sbp': {'min': 90, 'max': 200, 'safe_range': (95, 170)},
     'dbp': {'min': 60, 'max': 110, 'safe_range': (65, 100)},
     'pulse_rate': {'min': 50, 'max': 130, 'safe_range': (55, 120)},
     'resp': {'min': 10, 'max': 30, 'safe_range': (12, 24)},
     'temp': {'min': 35.0, 'max': 40.5, 'safe_range': (36.0, 39.5)},
     'pain_sev': {'max': 7},  # NRS < 8
-    'dizziness_sev': {'max': 4}  # With vision blackout
+    'dizziness_sev': {'max': 4},  # With vision blackout
+    'consciousness': {'allowed': ['A', 'V']},  # AVPU: only Alert/Voice allowed
+    'spo2': {'min': 92, 'safe_range': (95, 100)},  # SpO2 < 92% = hypoxemia
 }
 
 
@@ -43,6 +45,8 @@ def apply_ktas_rules(session):
     Args:
         session: Streamlit session_state object
     """
+    _apply_consciousness_rules(session)
+    _apply_spo2_rules(session)
     _apply_blood_pressure_rules(session)
     _apply_heart_rate_rules(session)
     _apply_respiratory_rules(session)
@@ -51,12 +55,39 @@ def apply_ktas_rules(session):
     _apply_neurological_rules(session)
 
 
+def _apply_consciousness_rules(session):
+    """
+    Apply consciousness level (AVPU) safety rules.
+    
+    Rules:
+    - Only Alert (A) and Voice-responsive (V) are allowed for KTAS 4-5
+    - Pain-responsive (P), Unresponsive (U), Confusion are KTAS 1-2 → excluded
+    """
+    allowed = KTAS_LIMITS['consciousness']['allowed']
+    if session.consciousness not in allowed:
+        session.consciousness = 'A'  # Default to Alert
+
+
+def _apply_spo2_rules(session):
+    """
+    Apply oxygen saturation (SpO2) safety rules.
+    
+    Rules:
+    - SpO2 must be ≥92% (exclude <92% hypoxemia which is KTAS Level 1-2)
+    """
+    if session.spo2 < KTAS_LIMITS['spo2']['min']:
+        session.spo2 = random.randint(
+            KTAS_LIMITS['spo2']['safe_range'][0],
+            KTAS_LIMITS['spo2']['safe_range'][1]
+        )
+
+
 def _apply_blood_pressure_rules(session):
     """
     Apply blood pressure safety rules.
     
     Rules:
-    - SBP must be 90-180 mmHg (exclude <90 hypotension/shock, >180 hypertensive crisis)
+    - SBP must be 90-200 mmHg (exclude <90 hypotension/shock, >200 hypertensive crisis)
     - DBP must be 60-110 mmHg
     - DBP must be less than SBP by at least 20 mmHg (pulse pressure)
     """
@@ -64,7 +95,7 @@ def _apply_blood_pressure_rules(session):
     if session.sbp < KTAS_LIMITS['sbp']['min']:
         session.sbp = random.randint(95, 130)
     if session.sbp > KTAS_LIMITS['sbp']['max']:
-        session.sbp = random.randint(120, 170)
+        session.sbp = random.randint(130, 190)
     
     # DBP Rules
     if session.dbp < KTAS_LIMITS['dbp']['min']:

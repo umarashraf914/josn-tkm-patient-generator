@@ -1,0 +1,376 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Pages 30-31",
+    "title": "환자 증상간 상관성/인과성 반영 기준 예시 (Correlation/Causality Constraint Scales) — continued",
+    "description": "Continuation of constraint pair tables. Page 30 top completes CP_04 (나이 table) from pages 28-29 file. Then new pairs begin. Page 31 bottom starts 입맛-의욕저하 which continues onto page 32.",
+    "continuation_from_previous": "CP_04 (나이 — 직업, 현병력, 약물력) table completes at top of page 30 (options 4-5 with 당뇨, 이상지질혈증, 혈압약, 당뇨약, 이상지질혈증약). Already fully captured in pages_28_29_correlation_scales.json.",
+    "continues_to_next": "CP_09 (입맛 — 의욕저하) options 5 for both sides appear on page 32.",
+    "shading_rule": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임"
+  },
+
+  "constraint_pairs": [
+    {
+      "pair_id": "CP_05",
+      "title": "음주 횟수 — 음주량",
+      "title_en": "Monthly Drinking Frequency — Amount Per Session",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "월간 음주 횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "월간 음주 횟수가 0회입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "월간 음주 횟수가 1회에서 4회 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "월간 음주 횟수가 5회에서 8회 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "월간 음주 횟수가 9회에서 15회 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "월간 음주 횟수가 16회 이상입니다."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "1회 당 음주량",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "1회 음주량이 2잔 이하입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "1회 음주량이 남성은 3~4잔, 여성은 3잔입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "1회 음주량이 남성은 5~6잔(약 1병 미만), 여성은 4잔(약 반 병)입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "1회 음주량이 남성은 7~9잔(약 1병 ~ 1병 반), 여성은 5~6잔(약 1병 미만)입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "1회 음주량이 남성은 10잔 이상(약 1병 반 이상), 여성은 7잔 이상(1병 이상)입니다."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Non-drinker cannot have maximum per-session amount",
+          "when_left": {"variable": "월간 음주 횟수", "options": [1]},
+          "then_right_excluded": {"variable": "1회 당 음주량", "options": [5]},
+          "reason": "음주 횟수가 0회이면 1회당 음주량이 최대(5)일 수 없음"
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "음주횟수가 높을수록 1회당 음주량도 높은 경향. Levels should be within ±1-2 of each other."
+    },
+
+    {
+      "pair_id": "CP_06",
+      "title": "일간 흡연 개피 — 총 흡연 기간 (담배)",
+      "title_en": "Daily Cigarettes — Total Smoking Duration",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "일간 흡연 개피",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "비흡연자이거나 하루 흡연량이 0개비입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "하루 흡연량이 1개비에서 9개비 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "하루 흡연량이 10개비에서 19개비 사이입니다 (반 갑 ~ 한 갑 미만)."
+          },
+          {
+            "option_number": 4,
+            "description": "하루 흡연량이 20개비에서 29개비 사이입니다 (한 갑 ~ 한 갑 반)."
+          },
+          {
+            "option_number": 5,
+            "description": "하루 흡연량이 30개비 이상입니다 (한 갑 반 이상)."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "총 흡연 기간",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "비흡연자입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "총 흡연 기간이 1년 미만입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "총 흡연 기간이 1년에서 3년 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "총 흡연 기간이 3년에서 10년 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "총 흡연 기간이 10년 이상입니다."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Non-smoker must pair with non-smoker",
+          "when_left": {"variable": "일간 흡연 개피", "options": [1]},
+          "then_right_forced": {"variable": "총 흡연 기간", "forced_option": 1},
+          "reason": "비흡연자(0개비)이면 총 흡연 기간도 반드시 비흡연자"
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "흡연량이 많을수록 흡연 기간도 긴 경향. 비흡연(left=1) ↔ 비흡연(right=1) 반드시 쌍으로. Smoker levels (2-5) should be within ±1-2."
+    },
+
+    {
+      "pair_id": "CP_07",
+      "title": "주간 운동 횟수 — 1회당 평균 운동 시간",
+      "title_en": "Weekly Exercise Frequency — Average Exercise Time Per Session",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "주간 운동 횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "주간 운동 횟수가 0회입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "주간 운동 횟수가 1회에서 2회 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "주간 운동 횟수가 3회에서 4회 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "주간 운동 횟수가 5회에서 6회 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "주간 운동 횟수가 7회 이상입니다 (매일)."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "1회당 평균 운동 시간",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "1회당 평균 운동 시간이 0분입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "1회당 평균 운동 시간이 1분에서 19분 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "1회당 평균 운동 시간이 20분에서 40분 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "1회당 평균 운동 시간이 41분에서 60분 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "1회당 평균 운동 시간이 60분을 초과합니다."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "No exercise frequency means no exercise time",
+          "when_left": {"variable": "주간 운동 횟수", "options": [1]},
+          "then_right_forced": {"variable": "1회당 평균 운동 시간", "forced_option": 1},
+          "reason": "운동 횟수가 0회이면 운동 시간도 반드시 0분"
+        },
+        {
+          "rule": "Active exerciser cannot have zero time",
+          "when_left": {"variable": "주간 운동 횟수", "options": [2, 3, 4, 5]},
+          "then_right_excluded": {"variable": "1회당 평균 운동 시간", "options": [1]},
+          "reason": "운동을 하면 시간이 0분일 수 없음"
+        }
+      ],
+
+      "correlation_type": "positive_proportional",
+      "enforcement": "운동 횟수 ↑ → 운동 시간도 ↑ 경향. 비운동(left=1) ↔ 비운동(right=1) 반드시 쌍으로. Exerciser levels (2-5) should be within ±1-2."
+    },
+
+    {
+      "pair_id": "CP_08",
+      "title": "생리주기 — 생리규칙성",
+      "title_en": "Menstrual Cycle Length — Menstrual Regularity",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "note": "Left has 5 options, right has only 4 options. This pair applies ONLY to female patients of menstruating age.",
+
+      "left_variable": {
+        "variable": "생리주기",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "생리 주기가 17일 이하이다."
+          },
+          {
+            "option_number": 2,
+            "description": "생리 주기가 18일에서 20일 사이이다."
+          },
+          {
+            "option_number": 3,
+            "description": "생리 주기가 21일에서 35일 사이이다."
+          },
+          {
+            "option_number": 4,
+            "description": "생리 주기가 36일에서 39일 사이이다."
+          },
+          {
+            "option_number": 5,
+            "description": "생리 주기가 40일 이상이다"
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "생리규칙성",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "3개월 이상 생리가 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "생리 주기가 2일 이내로 거의 일정함."
+          },
+          {
+            "option_number": 3,
+            "description": "생리 주기가 3~6일 정도 변동함."
+          },
+          {
+            "option_number": 4,
+            "description": "생리 주기가 7일 이상 계속 변동함."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "Very short cycle is incompatible with amenorrhea",
+          "when_left": {"variable": "생리주기", "options": [1]},
+          "then_right_excluded": {"variable": "생리규칙성", "options": [1]},
+          "reason": "주기가 17일 이하(매우 빈번)인데 3개월 이상 생리가 없다는 것은 모순"
+        },
+        {
+          "rule": "Normal or long cycle is incompatible with amenorrhea",
+          "when_left": {"variable": "생리주기", "options": [2, 3, 4]},
+          "then_right_excluded": {"variable": "생리규칙성", "options": [1]},
+          "reason": "정상~긴 주기(18-45일)인데 3개월 이상 생리가 없다는 것은 모순. 생리주기 4도 포함."
+        }
+      ],
+
+      "enforcement": "정상 주기(left=3)는 규칙적(right=2) 또는 소폭 변동(right=3)과 짝. 극단적 주기(left=1,5)는 불규칙(right=3,4) 또는 무월경(right=1, 긴 주기만)과 짝."
+    },
+
+    {
+      "pair_id": "CP_09",
+      "title": "입맛 — 의욕저하",
+      "title_en": "Appetite — Motivation Level",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+
+      "left_variable": {
+        "variable": "입맛",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "식욕 없음, 음식에 대한 생각이나 욕구 자체가 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "입맛 저하, 배는 고픈 것을 느끼지만 특정 음식이 당기거나 '먹고 싶다'는 적극적인 욕구가 없는 상태."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 식사 시간이 되면 자연스럽게 배고픔을 느끼고, 음식을 맛있게 섭취함."
+          },
+          {
+            "option_number": 4,
+            "description": "식욕 좋음, 항상 입맛이 좋은 편."
+          },
+          {
+            "option_number": 5,
+            "description": "식욕 항진, 식욕이 과도하게 왕성하여 스스로 조절하는 데 어려움을 겪으며, 포만감을 느껴도 계속 먹고 싶은 충동이 있음."
+          }
+        ]
+      },
+
+      "right_variable": {
+        "variable": "의욕저하",
+        "note": "Scale is INVERTED: option 1 = highest motivation, option 5 = lowest motivation",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 높은 편, 일상적인 활동이나 업무를 긍정적이고 능동적으로 수행하며, 의욕이 넘침"
+          },
+          {
+            "option_number": 2,
+            "description": "높은 편, 일상적인 활동이나 업무를 긍정적이고 능동적으로 수행하며, 대체로 의욕이 있는 편."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 해야 할 일은 수행하지만, 그 이상의 적극적인 의욕이나 열정은 부족한 일반적인 상태."
+          },
+          {
+            "option_number": 4,
+            "description": "저하, 매사에 의욕이 없고, 간단한 일상 활동조차 귀찮고 힘들게 느껴지며, 소극적이거나 회피하는 경향이 생김."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 저하, 의욕이 완전히 상실되어, 식사, 수면 등 기본적인 활동을 포함한 모든 일에 흥미나 관심이 없는 무기력한 상태."
+          }
+        ]
+      },
+
+      "incompatible_combinations": [
+        {
+          "rule": "No appetite with very high motivation is contradictory",
+          "when_left": {"variable": "입맛", "options": [1]},
+          "then_right_excluded": {"variable": "의욕저하", "options": [1]},
+          "reason": "식욕이 전혀 없는 사람이 의욕이 매우 높을 수 없음."
+        }
+      ],
+
+      "correlation_type": "inverse_scale_alignment",
+      "enforcement": "입맛과 의욕은 같은 방향으로 움직임 (식욕↓ = 의욕↓, 식욕↑ = 의욕↑). 단, 의욕저하 scale은 역순(1=최고, 5=최저)이므로: 입맛 low(1,2) → 의욕저하 high number(4,5). 입맛 high(4,5) → 의욕저하 low number(1,2). Within ±1 level when adjusted for inverse scale."
+    }
+  ]
+}

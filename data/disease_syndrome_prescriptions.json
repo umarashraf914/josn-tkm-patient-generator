@@ -1,0 +1,209 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Page 23",
+    "title": "질병별 변증유형 분류 (Disease × Syndrome × Representative Prescription)",
+    "description": "Maps each disease to its syndrome types and representative herbal prescriptions (대표처방)"
+  },
+  "diseases": [
+    {
+      "disease_ko": "상기도감염(감기)",
+      "disease_en": "Common Cold (Upper Respiratory Infection)",
+      "kcd_code": "J06",
+      "syndromes": [
+        {
+          "syndrome_ko": "풍한형",
+          "syndrome_en": "Wind-Cold Type",
+          "prescriptions": [
+            "행소산",
+            "삼소음",
+            "소청룡탕"
+          ]
+        },
+        {
+          "syndrome_ko": "풍열형",
+          "syndrome_en": "Wind-Heat Type",
+          "prescriptions": [
+            "은교산",
+            "상국음",
+            "연교패독산"
+          ]
+        }
+      ]
+    },
+    {
+      "disease_ko": "요통",
+      "disease_en": "Lower Back Pain",
+      "kcd_code": "M54",
+      "syndromes": [
+        {
+          "syndrome_ko": "한증형",
+          "syndrome_en": "Cold Pattern",
+          "prescriptions": [
+            "오적산"
+          ]
+        },
+        {
+          "syndrome_ko": "열증형",
+          "syndrome_en": "Heat Pattern",
+          "prescriptions": [
+            "이묘창백산",
+            "칠묘창백산"
+          ]
+        },
+        {
+          "syndrome_ko": "기허형",
+          "syndrome_en": "Qi Deficiency",
+          "prescriptions": [
+            "두충환",
+            "사군자탕"
+          ]
+        },
+        {
+          "syndrome_ko": "양허형",
+          "syndrome_en": "Yang Deficiency",
+          "prescriptions": [
+            "팔미지황원"
+          ]
+        },
+        {
+          "syndrome_ko": "음허형",
+          "syndrome_en": "Yin Deficiency",
+          "prescriptions": [
+            "육미지황원"
+          ]
+        },
+        {
+          "syndrome_ko": "식적형",
+          "syndrome_en": "Food Stagnation",
+          "prescriptions": [
+            "소적건비환"
+          ]
+        },
+        {
+          "syndrome_ko": "담음형",
+          "syndrome_en": "Phlegm-Fluid",
+          "prescriptions": [
+            "이진탕",
+            "궁하탕"
+          ]
+        },
+        {
+          "syndrome_ko": "기체형",
+          "syndrome_en": "Qi Stagnation",
+          "prescriptions": [
+            "칠기탕",
+            "소간해울탕"
+          ]
+        },
+        {
+          "syndrome_ko": "어혈형",
+          "syndrome_en": "Blood Stasis",
+          "prescriptions": [
+            "서근산",
+            "독활탕"
+          ]
+        }
+      ]
+    },
+    {
+      "disease_ko": "기능성 소화불량",
+      "disease_en": "Functional Dyspepsia",
+      "kcd_code": "K30",
+      "syndromes": [
+        {
+          "syndrome_ko": "한증형",
+          "syndrome_en": "Cold Pattern",
+          "prescriptions": [
+            "이중탕",
+            "안중산"
+          ],
+          "notes": "한열착잡 variant also possible"
+        },
+        {
+          "syndrome_ko": "열증형",
+          "syndrome_en": "Heat Pattern",
+          "prescriptions": [
+            "황련해독탕",
+            "반하사심탕"
+          ],
+          "notes": "한열착잡 (Cold-Heat Complex) variant"
+        },
+        {
+          "syndrome_ko": "기허형",
+          "syndrome_en": "Qi Deficiency",
+          "prescriptions": [
+            "사군자탕",
+            "육군자탕"
+          ]
+        },
+        {
+          "syndrome_ko": "양허형",
+          "syndrome_en": "Yang Deficiency",
+          "prescriptions": [
+            "사역탕"
+          ]
+        },
+        {
+          "syndrome_ko": "음허형",
+          "syndrome_en": "Yin Deficiency",
+          "prescriptions": [
+            "익위탕",
+            "마자인환"
+          ]
+        },
+        {
+          "syndrome_ko": "식적형",
+          "syndrome_en": "Food Stagnation",
+          "prescriptions": [
+            "내소화중탕",
+            "지실소비환"
+          ]
+        },
+        {
+          "syndrome_ko": "담음형",
+          "syndrome_en": "Phlegm-Fluid",
+          "prescriptions": [
+            "이진탕",
+            "궁하탕",
+            "평위산"
+          ]
+        },
+        {
+          "syndrome_ko": "기체형",
+          "syndrome_en": "Qi Stagnation",
+          "prescriptions": [
+            "소요산",
+            "시호소간탕"
+          ]
+        },
+        {
+          "syndrome_ko": "어혈형",
+          "syndrome_en": "Blood Stasis",
+          "prescriptions": [
+            "단삼음",
+            "혈부축어탕"
+          ]
+        }
+      ]
+    },
+    {
+      "disease_ko": "알레르기비염",
+      "disease_en": "Allergic Rhinitis",
+      "kcd_code": "J30",
+      "syndromes": [
+        {
+          "syndrome_ko": "수체형",
+          "syndrome_en": "Water Body Type (Fluid Retention)",
+          "prescriptions": [
+            "월비가반하탕",
+            "사간마황탕",
+            "소청룡탕",
+            "영감감미신하인탕",
+            "마황부자세신탕"
+          ],
+          "notes": "Each prescription acts as a sub-syndrome type for patient generation"
+        }
+      ]
+    }
+  ]
+}

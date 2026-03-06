@@ -1,0 +1,748 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Pages 25-27",
+    "title": "가상환자 생성 공통 규칙 (Common Patient Generation Rules)",
+    "description": "Programmatically enforceable rules for virtual patient generation. Every rule here MUST be checked during generation."
+  },
+
+  "required_fields": {
+    "description": "필수항목 - These fields MUST always be generated for every patient",
+    "demographics": ["키", "몸무게", "체질량지수", "성별", "나이"],
+    "vital_signs": ["체온", "맥박", "호흡", "혈압"],
+    "medical_history": ["고혈압", "당뇨", "이상지질혈증"],
+    "medications": ["혈압약", "당뇨약", "이상지질혈증약", "수면제", "항우울제", "항불안제"],
+    "social_history": ["월간 음주 횟수", "1회당 음주량", "일간 개피", "총 흡연기간", "직업"],
+    "family_history": ["고혈압", "당뇨", "심장병", "중풍"],
+    "menstrual_history": {
+      "fields": ["생리주기", "생리규칙성", "생리기간", "생리 양", "생리통강도"],
+      "condition": "female_of_reproductive_age",
+      "age_min": 14,
+      "age_max": 50,
+      "sex": "여"
+    }
+  },
+
+  "generation_behavior": {
+    "chief_complaint_frequency_and_severity": {
+      "rule": "주증에서는 빈도와 정도를 모두 생성",
+      "description": "For chief complaints, BOTH frequency (빈도) AND severity (정도) must be generated"
+    },
+    "body_part_symptoms": {
+      "rule": "환자 신체 부위별 증상/징후의 빈도 혹은 정도 항목은 가급적 하나만 생성",
+      "description": "For body-part symptoms, generate ONLY ONE of frequency or severity (not both)"
+    },
+    "preferred_ktas_level": {
+      "rule": "KTAS 4-5단계 생성 권장, 1-2단계 배제",
+      "target_levels": [4, 5],
+      "excluded_levels": [1, 2]
+    },
+    "concurrent_symptoms": {
+      "rule": "다빈도 증상 리스트에서 랜덤으로 1-2개 추가",
+      "count_min": 1,
+      "count_max": 2
+    }
+  },
+
+  "emergency_exclusions": {
+    "description": "응급상황 배제 기준 - KTAS 1-2등급에 해당하는 수치는 반드시 배제",
+    "rules": [
+      {
+        "indicator": "의식상태",
+        "indicator_en": "consciousness",
+        "exclusion": "통증에만 반응(P), 무반응(U), 혼돈(Confusion)",
+        "allowed_values_description": "Alert (A) or Voice-responsive (V) only"
+      },
+      {
+        "indicator": "혈압_수축기",
+        "indicator_en": "systolic_blood_pressure",
+        "unit": "mmHg",
+        "exclude_below": 90,
+        "exclude_above": 200,
+        "note": "180 is borderline. Conservative threshold is >200"
+      },
+      {
+        "indicator": "맥박",
+        "indicator_en": "heart_rate",
+        "unit": "bpm",
+        "exclude_below": 50,
+        "exclude_above": 130
+      },
+      {
+        "indicator": "호흡",
+        "indicator_en": "respiratory_rate",
+        "unit": "breaths/min",
+        "exclude_below": 10,
+        "exclude_above": 30
+      },
+      {
+        "indicator": "체온",
+        "indicator_en": "body_temperature",
+        "unit": "°C",
+        "exclude_below": 35.0,
+        "exclude_above": 40.5
+      },
+      {
+        "indicator": "산소포화도",
+        "indicator_en": "spo2",
+        "unit": "%",
+        "exclude_below": 92
+      },
+      {
+        "indicator": "통증_NRS",
+        "indicator_en": "pain_nrs",
+        "unit": "points",
+        "exclude_above_or_equal": 8
+      }
+    ]
+  },
+
+  "ktas_reference": {
+    "description": "KTAS 5단계 참고 - 1,2단계 배제, 가급적 4,5단계 생성",
+    "levels": [
+      {
+        "level": 1,
+        "name_ko": "소생",
+        "name_en": "Resuscitation",
+        "definition": "즉각적인 처치가 필요하며 생명/사지를 위협하는 상태",
+        "representative_symptoms": ["심정지", "무호흡", "중증 외상(쇼크)"],
+        "max_wait_time": "즉시",
+        "generation": "EXCLUDED"
+      },
+      {
+        "level": 2,
+        "name_ko": "긴급",
+        "name_en": "Emergent",
+        "definition": "생명/신체 기능에 잠재적 위협이 있어 빠른 치료가 필요한 경우",
+        "representative_symptoms": ["중등도 호흡곤란", "심인성 흉통", "뇌졸중 의심"],
+        "max_wait_time": "15분 이내",
+        "generation": "EXCLUDED"
+      },
+      {
+        "level": 3,
+        "name_ko": "응급",
+        "name_en": "Urgent",
+        "definition": "심각한 문제로 진행할 잠재성이 있어 응급 처치가 필요한 경우",
+        "representative_symptoms": ["경한 호흡부전", "중등도 복통/두통", "경한 탈수", "38도 이상 발열"],
+        "max_wait_time": "30분 이내",
+        "generation": "RARE"
+      },
+      {
+        "level": 4,
+        "name_ko": "준응급",
+        "name_en": "Less Urgent",
+        "definition": "악화/합병증 가능성을 고려하여 1~2시간 내 처치나 재평가가 필요한 상태",
+        "representative_symptoms": ["38도 이상 발열을 동반한 장염", "요로감염 증상"],
+        "max_wait_time": "1~2시간 이내",
+        "generation": "PREFERRED"
+      },
+      {
+        "level": 5,
+        "name_ko": "비응급",
+        "name_en": "Non-Urgent",
+        "definition": "긴급하지 않은 상태, 만성적이거나 경미한 문제",
+        "representative_symptoms": ["단순 감기", "상처 소독", "근육통"],
+        "max_wait_time": "2시간 이내",
+        "generation": "PREFERRED"
+      }
+    ]
+  },
+
+  "negative_correlations": {
+    "description": "음의 상관성 - These pairs MUST NOT coexist. If left side is true, right side MUST be excluded.",
+    "rules": [
+      {
+        "id": "NEG_01",
+        "name": "minor_no_job",
+        "condition": {
+          "variable": "나이",
+          "operator": "<=",
+          "value": 19
+        },
+        "exclusion": {
+          "variable": "직업",
+          "excluded_values": ["관리직", "전문직", "사무직", "서비스직", "판매직", "농/어업", "기능직", "장치, 기계조작 및 조립직", "단순노무", "직업군인"],
+          "forced_value": "학생"
+        },
+        "description": "미성년자(19세 이하)는 직업을 가질 수 없음. 학생으로 강제 설정"
+      },
+      {
+        "id": "NEG_02",
+        "name": "minor_no_chronic_disease",
+        "condition": {
+          "variable": "나이",
+          "operator": "<=",
+          "value": 19
+        },
+        "exclusion": {
+          "variables": ["고혈압", "당뇨", "이상지질혈증"],
+          "forced_value": "없음"
+        },
+        "description": "미성년자는 만성병(고혈압/당뇨/이상지질혈증)을 가질 수 없음"
+      },
+      {
+        "id": "NEG_03",
+        "name": "minor_no_chronic_meds",
+        "condition": {
+          "variable": "나이",
+          "operator": "<=",
+          "value": 19
+        },
+        "exclusion": {
+          "variables": ["혈압약", "당뇨약", "이상지질혈증약"],
+          "forced_value": "복용하고 있지 않다"
+        },
+        "description": "미성년자는 만성병 약물을 복용할 수 없음"
+      },
+      {
+        "id": "NEG_04",
+        "name": "no_drink_no_quantity",
+        "condition": {
+          "variable": "월간 음주 횟수",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "0회"
+        },
+        "exclusion": {
+          "variable": "1회당 음주량",
+          "action": "skip_generation",
+          "note": "음주량 항목 자체를 생성하지 않음"
+        },
+        "description": "술을 안 마시면 음주량(잔 수) 산정을 배제"
+      },
+      {
+        "id": "NEG_05",
+        "name": "no_smoke_no_duration",
+        "condition": {
+          "variable": "일간 개피",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "비흡연자/0개비"
+        },
+        "exclusion": {
+          "variable": "총 흡연기간",
+          "action": "skip_generation",
+          "forced_option": 1,
+          "note": "비흡연자로 강제 설정"
+        },
+        "description": "담배를 안 피우면 흡연기간 산정을 배제"
+      },
+      {
+        "id": "NEG_06",
+        "name": "exercise_freq_needs_time",
+        "condition": {
+          "variable": "주간 횟수",
+          "operator": ">=",
+          "option_number": 2,
+          "value_description": "1회 이상 운동"
+        },
+        "exclusion": {
+          "variable": "1회당 평균 운동 시간",
+          "excluded_option_numbers": [1],
+          "excluded_description": "0분은 불가"
+        },
+        "description": "운동횟수가 있으면 평균운동시간이 0시간이 되는 것 배제"
+      },
+      {
+        "id": "NEG_07",
+        "name": "menstrual_cycle_excludes_amenorrhea",
+        "condition": {
+          "variable": "생리주기",
+          "operator": "is_specified",
+          "value_description": "생리주기가 제시됨"
+        },
+        "exclusion": {
+          "variable": "생리규칙성",
+          "excluded_option_numbers": [1],
+          "excluded_description": "3개월 이상 생리가 없음"
+        },
+        "description": "생리주기가 제시되면 '3개월 이상 생리 없음' 항목 배제"
+      },
+      {
+        "id": "NEG_08",
+        "name": "no_appetite_no_high_motivation",
+        "condition": {
+          "variable": "입맛",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "식욕 없음"
+        },
+        "exclusion": {
+          "variable": "의욕",
+          "excluded_option_numbers": [1],
+          "excluded_description": "매우 높은 편/능동적"
+        },
+        "description": "입맛(식욕)이 없는데 의욕이 매우 높고 능동적인 성향은 배제"
+      },
+      {
+        "id": "NEG_09",
+        "name": "one_meal_not_very_regular",
+        "condition": {
+          "variable": "1일 식사횟수",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "1회"
+        },
+        "exclusion": {
+          "variable": "식사 규칙성",
+          "excluded_option_numbers": [1],
+          "excluded_description": "매우 규칙적"
+        },
+        "description": "식사횟수 1회인 경우 '매우 규칙적'은 배제"
+      },
+      {
+        "id": "NEG_10",
+        "name": "comfortable_bowel_no_high_residual",
+        "condition": {
+          "variable": "배변 후 불편감",
+          "operator": "in",
+          "option_numbers": [1, 2],
+          "value_description": "상쾌하다"
+        },
+        "exclusion": {
+          "variable": "배변 후 잔변감(강도)",
+          "excluded_option_numbers": [3, 4, 5],
+          "excluded_description": "중등도 이상"
+        },
+        "description": "배변후 느낌이 상쾌하면 잔변감 중등도 이상 배제"
+      },
+      {
+        "id": "NEG_11",
+        "name": "low_urine_freq_no_high_nocturia",
+        "condition": {
+          "variable": "1일 소변 횟수(야간뇨 포함)",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "0-2회"
+        },
+        "exclusion": {
+          "variable": "야간뇨 횟수",
+          "excluded_option_numbers": [3, 4, 5],
+          "excluded_description": "중등도 이상 (2회 이상)"
+        },
+        "description": "1일 소변횟수 0-2회이면 야간뇨 중등도 이상 배제"
+      },
+      {
+        "id": "NEG_12",
+        "name": "comfortable_urine_no_high_residual",
+        "condition": {
+          "variable": "소변 후 불편감",
+          "operator": "in",
+          "option_numbers": [1, 2],
+          "value_description": "상쾌하다"
+        },
+        "exclusion": {
+          "variable": "배뇨 후 잔뇨감(강도)",
+          "excluded_option_numbers": [3, 4, 5],
+          "excluded_description": "중등도 이상"
+        },
+        "description": "소변후 느낌이 상쾌하면 잔뇨감 중등도 이상 배제"
+      },
+      {
+        "id": "NEG_13",
+        "name": "very_weak_must_be_tired",
+        "condition": {
+          "variable": "체력강약",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "매우 약함"
+        },
+        "exclusion": {
+          "variable": "피로감",
+          "excluded_option_numbers": [1],
+          "excluded_description": "거의 없음"
+        },
+        "description": "체력이 매우 약한데 피로가 거의 없다는 것은 배제"
+      },
+      {
+        "id": "NEG_14",
+        "name": "very_dry_skin_no_glowing_face",
+        "condition": {
+          "variable": "피부 건조도",
+          "operator": "in",
+          "option_numbers": [4, 5],
+          "value_description": "심함/매우 심함"
+        },
+        "exclusion": {
+          "variable": "얼굴 광택",
+          "excluded_option_numbers": [4, 5],
+          "excluded_description": "윤기가 충만함/매우 충만함"
+        },
+        "description": "피부건조도가 매우 심한데 얼굴 광택이 윤기 충만한 것 배제"
+      },
+      {
+        "id": "NEG_15",
+        "name": "no_tinnitus_no_severity",
+        "condition": {
+          "variable": "이명(빈도)",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "없음"
+        },
+        "exclusion": {
+          "variable": "이명(강도)",
+          "forced_option": 1,
+          "forced_description": "없음"
+        },
+        "description": "이명을 느끼지 않으면 이명 강도도 반드시 '없음'"
+      },
+      {
+        "id": "NEG_16",
+        "name": "no_pain_no_pain_pattern",
+        "condition": {
+          "variable": "전복부 통증(강도)",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "없음"
+        },
+        "exclusion": {
+          "variable": "복통의 양상",
+          "action": "skip_generation"
+        },
+        "description": "복통이 없는데 복통의 양상이 나오면 안됨"
+      },
+      {
+        "id": "NEG_17",
+        "name": "no_body_pain_no_heavy_body",
+        "condition": {
+          "variable": "신체통_근육통",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "없음"
+        },
+        "exclusion": {
+          "variable": "신중",
+          "excluded_option_numbers": [3, 4, 5],
+          "excluded_description": "중등도 이상 (몸이 무겁다)"
+        },
+        "description": "신체통이 없는데 몸이 무겁다(신중) 증상이 중등도 이상 나오는 것 배제"
+      },
+      {
+        "id": "NEG_18",
+        "name": "clear_mind_not_very_bad_memory",
+        "condition": {
+          "variable": "정신상태",
+          "operator": "==",
+          "option_number": 1,
+          "value_description": "매우 맑음"
+        },
+        "exclusion": {
+          "variable": "기억력",
+          "excluded_option_numbers": [4, 5],
+          "excluded_description": "나쁨/매우 나쁨"
+        },
+        "description": "정신이 맑은데 기억력이 매우 나빠지면 안됨"
+      },
+      {
+        "id": "NEG_19",
+        "name": "heat_cold_contradiction",
+        "type": "bidirectional_contradiction",
+        "description": "한열 민감성 관계에서 모순적 지표 배제 (예: 열이 매우 높은데 체온이 낮다)",
+        "contradictions": [
+          {
+            "if_variable": "인체 한열(몸이 차고 더운 정도)",
+            "if_option_description": "매우 뜨거운편 (high body heat sensation)",
+            "then_exclude_variable": "체온",
+            "exclude_description": "저체온 or 정상 저온"
+          },
+          {
+            "if_variable": "체온",
+            "if_option_description": "고열 (fever)",
+            "then_exclude_variable": "인체 한열(몸이 차고 더운 정도)",
+            "exclude_description": "매우 차가운편"
+          }
+        ]
+      },
+      {
+        "id": "NEG_20",
+        "name": "sweat_heat_inverse",
+        "description": "땀 양이 많아지면 체온이 높아지는 것 배제 (땀과 열은 음의 상관성)",
+        "condition": {
+          "variable": "일상 생활에서 땀 량",
+          "operator": "in",
+          "option_numbers": [4, 5],
+          "value_description": "많음/매우 많음"
+        },
+        "exclusion": {
+          "variable": "체온",
+          "excluded_description": "고열 수준"
+        }
+      },
+      {
+        "id": "NEG_21",
+        "name": "obsessive_no_good_appetite",
+        "description": "강박증상은 식욕좋음, 소화잘됨과 음의 상관관계로 가급적 배제",
+        "condition": {
+          "variable": "강박",
+          "operator": ">=",
+          "option_description": "강박 증상이 있음"
+        },
+        "exclusion": {
+          "variables": ["입맛", "소화정도"],
+          "excluded_description": "식욕 좋음/매우 좋음, 소화 잘됨"
+        }
+      }
+    ]
+  },
+
+  "positive_correlations": {
+    "description": "양의 상관성 - These indicators should co-occur frequently. When generating, reinforce related variables.",
+    "rules": [
+      {
+        "id": "POS_01",
+        "name": "age_increases_discomfort",
+        "description": "나이가 많을수록 불편증상과 동반질병이 증가하게 생성",
+        "variable": "나이",
+        "direction": "higher_age_more_symptoms",
+        "affected": ["현병력", "불편증상", "통증"]
+      },
+      {
+        "id": "POS_02",
+        "name": "sex_disease_tendency",
+        "description": "동반질병 생성시 성별차이 고려",
+        "note": "Gender-specific disease prevalence should be reflected"
+      },
+      {
+        "id": "POS_03",
+        "name": "appetite_digestion_cluster",
+        "description": "식욕이 좋으면 소화가 양호하고 비만, 음수량, 식사량이 많아지는 경향",
+        "cluster": ["입맛", "소화정도", "체질량지수", "음수량", "1일 평균 식사량"],
+        "direction": "positive"
+      },
+      {
+        "id": "POS_04",
+        "name": "indigestion_GI_cluster",
+        "description": "소화불량은 상복부통증, 구토, 구역, 트림, 속쓰림(위산역류) 등과 양의 상관성",
+        "cluster": ["소화정도", "전복부 통증(강도)", "구역감/구토", "트림", "메스꺼움(강도)"],
+        "direction": "when_indigestion_present_reinforce_others"
+      },
+      {
+        "id": "POS_05",
+        "name": "chest_distress_cluster",
+        "description": "가슴답답함(흉민)은 흉통, 스트레스, 우울, 두통, 수면 등과 양의 상관관계",
+        "cluster": ["흉부 답답함(빈도)", "흉부 통증(빈도)", "스트레스 대처력", "우울(우울함)", "수면 깊이"],
+        "direction": "positive"
+      },
+      {
+        "id": "POS_06",
+        "name": "dyspnea_cluster",
+        "description": "숨참(천증)은 흉통, 갈증, 기침과 양의 상관관계",
+        "cluster": ["호흡소리 크기", "흉부 통증(빈도)", "음수량"],
+        "direction": "positive"
+      },
+      {
+        "id": "POS_07",
+        "name": "cough_phlegm_cluster",
+        "description": "기침은 가래, 매핵기와 양의 상관성",
+        "cluster": ["기침", "가래", "매핵기"],
+        "direction": "positive"
+      },
+      {
+        "id": "POS_08",
+        "name": "fatigue_pain_weakness_cluster",
+        "description": "피로-통증, 피로-허약은 상호 양의 상관성",
+        "cluster": ["피로감", "체력강약", "신체통_근육통"],
+        "direction": "positive"
+      },
+      {
+        "id": "POS_09",
+        "name": "hearing_tinnitus_cluster",
+        "description": "난청과 이명은 양의 상관성",
+        "cluster": ["이명(빈도)", "이명(강도)", "이롱(난청)"],
+        "direction": "positive"
+      },
+      {
+        "id": "POS_10",
+        "name": "comorbidity_cluster",
+        "description": "고혈압, 이상지질혈증, 당뇨는 상호 양의 상관성",
+        "cluster": ["고혈압", "이상지질혈증", "당뇨"],
+        "direction": "positive",
+        "note": "If one is present, probability of others increases"
+      },
+      {
+        "id": "POS_11",
+        "name": "medication_matches_disease",
+        "description": "약물력은 반드시 현병력과 일치해야 함",
+        "pairs": [
+          {"disease": "고혈압", "medication": "혈압약"},
+          {"disease": "당뇨", "medication": "당뇨약"},
+          {"disease": "이상지질혈증", "medication": "이상지질혈증약"}
+        ],
+        "rule": "disease_present_implies_medication_possible, disease_absent_implies_no_medication"
+      }
+    ]
+  },
+
+  "concurrent_symptoms_list": {
+    "description": "한의원 다빈도 증상 및 병증 - 가상환자 생성 시 1-2개 랜덤 추가",
+    "source": "Page 26: Table 가상환자 개발 시 AI 참고하여 추가할 증상 및 병증리스트",
+    "add_count_min": 1,
+    "add_count_max": 2,
+    "categories": {
+      "질병영역": ["중풍", "중풍후유증"],
+      "얼굴영역": ["구안와사(口眼喎斜)", "복시(複視)", "눈통증", "안구건조", "안면홍조", "시력저하", "눈시림", "비명(鼻鳴)", "주사비", "목덩이"],
+      "호흡영역": ["숨참(喘)", "기관지천식", "매핵기(식도이물감)(梅核氣)", "가슴덩이"],
+      "순환영역": ["심번(心煩)"],
+      "소화영역": ["조잡(嘈雜)", "오심(惡心)", "애기(噯氣)", "탄산(呑酸)", "구내염", "위산역류(식도역류)", "복부덩이", "복부긴장감", "제하함몰", "흉협고만", "심하지결"],
+      "배설영역": ["유뇨(遺尿)", "닉뇨(溺尿)", "식한(食汗)"],
+      "근골격계영역": ["발목염좌", "발바닥통증", "오십견", "수전증", "손발저림증"],
+      "비뇨생식계영역": ["성기능감퇴", "전립선 비대"],
+      "활력_수면_정서영역": ["노권(勞倦)", "허로(虛勞)", "강박(强迫)", "놀람", "조급함"],
+      "부인과영역": ["임신감기", "난산(難産)", "대하(帶下)", "냉(冷)", "갱년기(更年期)증상", "산후풍(産後風)", "태동(胎動)", "태동불안(胎動不安)", "난임(難姙)"],
+      "소아영역": ["경풍(驚風)", "성장부진"],
+      "피부영역": ["아토피", "탈모"]
+    }
+  },
+
+  "variable_correlation_scales": {
+    "description": "Pages 28-37: Detailed 5-point scale definitions for correlated variable pairs. Used for enforcing logical consistency.",
+    "pairs": [
+      {
+        "pair_id": "SCALE_01",
+        "left_variable": "발열",
+        "right_variable": "한열왕래",
+        "correlation_type": "mutual_exclusion_at_extremes",
+        "left_scale": {
+          "1": "없음, 35도 이하 (저체온)",
+          "2": "발열 증상 없음 (정상 체온)",
+          "3": "뚜렷한 열감, 피로감/불편감 동반 (37.4~37.9°C)",
+          "4": "몸이 뜨겁고 전신 근육통/두통 동반 (38~39.9°C)",
+          "5": "불덩이처럼 뜨겁고 어지러움/혼미함 (40°C 이상)"
+        },
+        "right_scale": {
+          "1": "없음",
+          "2": "경미하게 춥다가 더운 현상이 가끔",
+          "3": "으슬으슬 춥다가 덥다, 체온조절 불안정",
+          "4": "뚜렷한 오한→뚜렷한 발열 번갈아 나타남",
+          "5": "떨릴 정도 오한 후 땀날 정도 발열 반복, 일상 지장"
+        },
+        "rule": "한열왕래(발열과 오한이 번갈아) 증상과 단순 '발열' 또는 '오한'은 동시에 나올 수 없음"
+      },
+      {
+        "pair_id": "SCALE_02",
+        "left_variable": "콧물량",
+        "right_variable": "콧물색",
+        "correlation_type": "positive_progressive",
+        "rule": "콧물이 없으면(1) 색도 없음. 콧물이 많을수록 색이 진해지는 경향 (맑은→흰색→누런색)"
+      },
+      {
+        "pair_id": "SCALE_03",
+        "left_variable": "코막힘",
+        "right_variable": "후각감퇴",
+        "correlation_type": "positive",
+        "rule": "코막힘이 심할수록 후각감퇴도 심해지는 경향"
+      },
+      {
+        "pair_id": "SCALE_04",
+        "left_variable": "나이",
+        "right_variable": "직업_현병력_약물력",
+        "correlation_type": "age_dependent",
+        "age_brackets": {
+          "1": "소아·청소년 (~19세): 직업=학생, 만성병/약물=없음",
+          "2": "청년 (20~39세): 모든 직업 가능, 만성병 가능성 낮음",
+          "3": "중년 (40~54세): 모든 직업 가능, 만성병 가능성 중간",
+          "4": "장년 (55~69세): 은퇴 가능, 만성병 가능성 높음",
+          "5": "노년 (70세+): 은퇴/무직 우세, 만성병 가능성 매우 높음"
+        }
+      },
+      {
+        "pair_id": "SCALE_05",
+        "left_variable": "월간 음주 횟수",
+        "right_variable": "1회당 음주량",
+        "correlation_type": "conditional",
+        "rule": "음주횟수=0이면 음주량 생성 안함. 음주횟수가 높을수록 음주량도 높은 경향"
+      },
+      {
+        "pair_id": "SCALE_06",
+        "left_variable": "일간 개피",
+        "right_variable": "총 흡연기간",
+        "correlation_type": "conditional",
+        "rule": "비흡연이면 흡연기간도 비흡연. 개피수가 높을수록 흡연기간도 긴 경향"
+      },
+      {
+        "pair_id": "SCALE_07",
+        "left_variable": "주간 운동 횟수",
+        "right_variable": "1회당 평균 운동 시간",
+        "correlation_type": "conditional",
+        "rule": "운동횟수=0이면 운동시간도 0. 운동횟수가 있으면 시간은 0이 아니어야 함"
+      },
+      {
+        "pair_id": "SCALE_08",
+        "left_variable": "생리주기",
+        "right_variable": "생리규칙성",
+        "correlation_type": "conditional",
+        "rule": "생리주기가 제시되면 '3개월이상 생리없음(option 1)' 배제"
+      },
+      {
+        "pair_id": "SCALE_09",
+        "left_variable": "입맛",
+        "right_variable": "의욕",
+        "correlation_type": "negative_at_extremes",
+        "rule": "식욕없음(1) → 의욕 '매우 높음'(1) 배제"
+      },
+      {
+        "pair_id": "SCALE_10",
+        "left_variable": "1일 식사횟수",
+        "right_variable": "식사 규칙성",
+        "correlation_type": "negative_at_extremes",
+        "rule": "식사횟수 1회(1) → '매우 규칙적'(1) 배제"
+      },
+      {
+        "pair_id": "SCALE_11",
+        "left_variable": "배변 후 불편감",
+        "right_variable": "배변 후 잔변감(강도)",
+        "correlation_type": "negative_at_extremes",
+        "rule": "상쾌(1,2) → 잔변감 중등도 이상(3,4,5) 배제"
+      },
+      {
+        "pair_id": "SCALE_12",
+        "left_variable": "1일 소변 횟수(야간뇨 포함)",
+        "right_variable": "야간뇨 횟수",
+        "correlation_type": "conditional_cap",
+        "rule": "소변횟수 0-2회(1) → 야간뇨 중등도 이상(3,4,5) 배제"
+      },
+      {
+        "pair_id": "SCALE_13",
+        "left_variable": "소변 후 불편감",
+        "right_variable": "배뇨 후 잔뇨감(강도)",
+        "correlation_type": "negative_at_extremes",
+        "rule": "상쾌(1,2) → 잔뇨감 중등도 이상(3,4,5) 배제"
+      },
+      {
+        "pair_id": "SCALE_14",
+        "left_variable": "체력강약",
+        "right_variable": "피로감",
+        "correlation_type": "negative_at_extremes",
+        "rule": "매우 약함(1) → 피로 '거의 없음'(1) 배제. 역방향: 매우 강함(5) → 피로 '매우 심함'(5) 가능성 낮음"
+      },
+      {
+        "pair_id": "SCALE_15",
+        "left_variable": "피부 건조도",
+        "right_variable": "얼굴 광택",
+        "correlation_type": "negative_at_extremes",
+        "rule": "건조 심함(4,5) → 윤기 충만(4,5) 배제"
+      },
+      {
+        "pair_id": "SCALE_16",
+        "left_variable": "이명(빈도)",
+        "right_variable": "이명(강도)",
+        "correlation_type": "conditional_strict",
+        "rule": "빈도=없음(1) → 강도=반드시 없음(1). 빈도↑ → 강도도 비례 경향"
+      },
+      {
+        "pair_id": "SCALE_17",
+        "left_variable": "전복부 통증(강도)",
+        "right_variable": "복통의 양상",
+        "correlation_type": "conditional_strict",
+        "rule": "통증=없음(1) → 양상 생성 안함. 통증이 있을 때만 양상 선택 가능",
+        "pain_patterns": ["당기듯이 아프다", "찌르듯이 아프다", "배가 무겁다", "쑤시듯이 아프다", "차고 시리듯이 아프다", "통증이 돌아다닌다", "통증이 특정부위로 고정"]
+      },
+      {
+        "pair_id": "SCALE_18",
+        "left_variable": "정신상태",
+        "right_variable": "기억력",
+        "correlation_type": "negative_at_extremes",
+        "rule": "매우 맑음(1) → 기억력 나쁨/매우나쁨(4,5) 배제"
+      }
+    ]
+  }
+}
