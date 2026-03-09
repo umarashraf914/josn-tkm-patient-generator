@@ -86,7 +86,7 @@ SESSION_DEFAULTS = {
     "stool_freq": "1회/일",  # 대변 횟수
     "stool_color": "황갈색",  # 대변 색
     "stool_form": "보통",  # 대변 굵기(형태)
-    "stool_discomfort": False,  # 배변 후 불편감
+    "stool_discomfort": 0,  # 배변 후 불편감 0-5
     "stool_residual": 0,  # 배변 후 잔변감(강도) 0-5
 
     # ===========================================
@@ -96,10 +96,10 @@ SESSION_DEFAULTS = {
     "urine_freq_night": 0,  # 야간뇨 횟수
     "urine_color": "황색",  # 소변 색
     "urine_stream": "정상",  # 소변 굵기(소변줄기)
-    "urine_discomfort": False,  # 소변 후 불편감
+    "urine_discomfort": 0,  # 소변 후 불편감 0-5
     "urine_residual": False,  # 배뇨 후 잔뇨감
     "urine_residual_sev": 0,  # 잔뇨감 강도 0-5
-    "urine_incontinence": False,  # 유뇨/요실금
+    "urine_incontinence": 0,  # 유뇨/요실금 0-5
 
     # ===========================================
     # 수면상태 (Sleep) - Page 19
@@ -131,6 +131,8 @@ SESSION_DEFAULTS = {
     "cold_sensitivity": 3,  # 주위 민감도 (1-5)
     "heat_sensitivity": 3,  # 더위 민감도 (1-5)
     "cold_heat_pref": "보통",  # Legacy compatibility
+    "warm_body_areas": "없음",  # 인체에서 비교적 따뜻한 부위
+    "cold_body_areas": "없음",  # 인체에서 비교적 차가운 부위
 
     # ===========================================
     # 전신상태 (General Condition) - Page 19
@@ -141,14 +143,16 @@ SESSION_DEFAULTS = {
     "edema": "없음",  # 부종여부
     "bruising": "정상",  # 인체 부위의 출혈/멍듦
     "condition_bad_area": [],  # 평소 컨디션이 안좋을 때 불편한 부위
-    "limb_weakness": False,  # 사지 무력감
+    "limb_weakness": 0,  # 사지 무력감 0-5
+    "body_ache": 0,  # 신체통, 근육통 여부 0-5
+    "body_heaviness": 0,  # 신중(身重) 여부 0-5
 
     # ===========================================
     # 피부상태 (Skin Condition) - Page 19
     # ===========================================
-    "skin_trouble": False,  # 피부트러블
+    "skin_trouble": 0,  # 피부트러블 0-5
     "skin_dry": "정상",  # 피부 건조도
-    "skin_itch": False,  # 피부 가려움
+    "skin_itch": 0,  # 피부 가려움 0-5
 
     # ===========================================
     # 얼굴 (Face) - Page 17
@@ -159,9 +163,9 @@ SESSION_DEFAULTS = {
     # ===========================================
     # 눈 (Eyes) - Page 17
     # ===========================================
-    "eye_discomfort": False,  # 눈 불편감
-    "eye_red": False,  # 눈 충혈
-    "vision_blackout": False,  # 눈 앞이 캄캄함
+    "eye_discomfort": 0,  # 눈 불편감 0-5
+    "eye_red": 0,  # 눈 충혈 0-5
+    "vision_blackout": 0,  # 눈 앞이 캄캄함 0-5
 
     # ===========================================
     # 귀 (Ears) - Page 17
@@ -174,18 +178,21 @@ SESSION_DEFAULTS = {
     # 구강/목 (Mouth/Throat) - Page 17-18
     # ===========================================
     "lip_color": "정상",  # 입술 색
-    "lip_dry": False,  # 입술 건조
+    "lip_dry": 0,  # 입술 건조 0-5
     "water_intake": "1-2L",  # 음수량
     "mouth_dry": 0,  # 입마름 정도(구건/구갈) 0-5
-    "throat_dry": False,  # 인후 건조
-    "mouth_bitter": False,  # 구고(입이 씀)
-    "bad_breath": False,  # 구취
-    "hiccup": False,  # 딸꾹질
+    "throat_dry": 0,  # 인후 건조 0-5
+    "mouth_bitter": 0,  # 구고(입이 쐨) 0-5
+    "bad_breath": 0,  # 구취 0-5
+    "hiccup": 0,  # 딸꽀질 0-5
 
     # ===========================================
     # 어지러움 (Dizziness) - Page 18
     # ===========================================
     "dizziness_sev": 0,  # 어지러움(두훈) 0-5
+    "head_discomfort_freq": 0,  # 두부 불편감(빈도) 0-5
+    "head_discomfort_sev": 0,  # 두부 불편감(강도) 0-5
+    "nose_dry": 0,  # 코 건조함 0-5
 
     # ===========================================
     # 뒷목/경항부 (Neck/Nape) - Page 18
@@ -345,6 +352,8 @@ SESSION_DEFAULTS = {
     
     # Page 39-40: 감기 가상환자 주증정보 필수항목
     "cold_chief_type": [],  # 감기주소증 유형 (최소 1개 이상)
+    "past_illness_cold": False,  # 과거 감기 경험
+    "cold_modifying_factors": [],  # 감기 완화/악화요인
     "cold_onset_specific": "",  # O/S 구체적 날로 제시 (예 1일 전, 1주일 전 등)
     "cold_background_story": "",  # 경과: 감기 걸리게 된 배경, 당시 상황 (AI 자체 생성)
     "cold_sweating_check": False,  # 감기시 땀 유무 (검증 항목)
@@ -365,10 +374,24 @@ SESSION_DEFAULTS = {
     "exam_rhinoscope_finding": "정상",  # 비경을 이용한 진찰소견
     
     # Rhinitis Specifics (비염 특이사항)
+    "rhinitis_onset": "",  # 알러지비염 발현시점
+    "rhinitis_past": False,  # 과거 알러지비염 경험
     "sneeze_sev": 1, "nose_block_sev": 1, "nose_itch_sev": 1, 
+    "sneeze_freq": 0,  # 재채기(빈도) 0-5
     "snot_type": "청수양 (淸水樣) - 맑은 콧물",
+    "rhinitis_modifying_factors": [],  # 비염 완화/악화요인
     
     # Back Pain Specifics (요통 특이사항) - Page 15-16
+    "backpain_onset": "",  # 요통 발현시점
+    "backpain_past": False,  # 과거 요통 경험
+    "back_discomfort_area": "",  # 허리 불편부위
+    "back_discomfort_freq": 0,  # 허리 불편(빈도) 0-5
+    "back_discomfort_sev": 0,  # 허리 불편(강도) 0-5
+    "radiation_pain": "없음",  # 방산통
+    "pain_duration": 0,  # 통증지속시간 0-5
+    "back_pain_nature": [],  # 허리 통증의 양상
+    "back_modifying_factors": [],  # 악화/완화요인
+    "slr_test": False,  # 하지직거상검사
     "pain_sev": 1,
     "pain_nature": [],
     "back_pain_cause": "None",  # 발병 요인
@@ -376,6 +399,13 @@ SESSION_DEFAULTS = {
     "back_radiation": False,  # 다리로 방사
     
     # Dyspepsia Specifics (소화불량 특이사항) - Page 16
+    "dyspepsia_onset": "",  # 소화불량 시작시점
+    "dyspepsia_past": False,  # 과거 유사경험
+    "postprandial_fullness": 0,  # 식후포만감 0-5
+    "early_satiety": 0,  # 조기포만감 0-5
+    "epigastric_discomfort": 0,  # 상복부 불편감 0-5
+    "epigastric_burning": 0,  # 상복부 속쓰림 0-5
+    "dyspepsia_modifying_factors": [],  # 완화/악화요인
     "dyspepsia_spec": [],
     "acid_reflux": False,  # 신물
     "bitter_taste": False,  # 구고

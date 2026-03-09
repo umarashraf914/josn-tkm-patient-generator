@@ -16,11 +16,33 @@ from constants import (
     COLD_CHIEF_TYPES, COLD_EXAM_OPTIONS,
     get_pattern_info, get_kcd_info, get_all_symptom_options
 )
-from constraint_rules import apply_constraint_rules, apply_symptom_correlation_rules
-# NOTE: symptom_correlations module is still used in background logic (constraint_rules.py)
-from randomizer import randomize_inputs
 from patient_generator import generate_patient
 from pdf_generator import generate_patient_pdf_korean
+from json_patient_sampler import generate_json_patient, get_syndrome_keys
+
+
+def _disease_key_from_display(display: str) -> str:
+    """Map UI disease display name → DISEASE_FILES key."""
+    if "감기" in display:
+        return "감기"
+    if "비염" in display:
+        return "알레르기비염"
+    if "요통" in display:
+        return "요통"
+    if "소화불량" in display:
+        return "기능성소화불량"
+    return "감기"
+
+
+def _resolve_json_params(session):
+    """Read JSON sampling widgets and return (disease_key, mode, syndrome_key)."""
+    dk = _disease_key_from_display(session.get("disease", ""))
+    mode = "syndrome" if "syndrome" in session.get("json_sample_mode_radio", "") else "general"
+    skey = None
+    if mode == "syndrome":
+        sel = session.get("json_syndrome_sel", "")
+        skey = sel.split(" — ")[0] if " — " in sel else sel
+    return dk, mode, skey
 
 # --- API KEY CONFIGURATION ---
 if API_KEY == "PASTE_YOUR_API_KEY_HERE" or not API_KEY:
@@ -47,9 +69,10 @@ if '_prev_pattern_idx' not in st.session_state:
 with st.sidebar:
     st.markdown("### ⚙️ 조작")
     
-    # Randomize Button
+    # Randomize Button (JSON probability sampling)
     if st.button("🎲 랜덤 생성", use_container_width=True, type="primary"):
-        randomize_inputs(st)
+        dk, mode, skey = _resolve_json_params(st.session_state)
+        generate_json_patient(st.session_state, dk, mode, skey)
         st.rerun()
     
     st.markdown("---")
@@ -113,6 +136,29 @@ with st.sidebar:
                 for excl in kcd_info['exclusions']:
                     st.markdown(f"- ❌ {excl}")
 
+    # --- JSON sampling controls ---
+    if disease_key:
+        st.markdown("---")
+        st.markdown("**🎯 JSON 샘플링**")
+        st.radio(
+            "샘플링 방식",
+            ["전체 질환 확률 (general)", "변증별 확률 (syndrome)"],
+            key="json_sample_mode_radio",
+            help="general: 질환 전체 확률분포 | syndrome: 선택된 변증 확률분포",
+        )
+        if "syndrome" in st.session_state.get("json_sample_mode_radio", ""):
+            # Build syndrome display list from pattern names
+            syn_keys = get_syndrome_keys(disease_key)
+            if disease_key in DISEASE_PATTERNS:
+                pats = DISEASE_PATTERNS[disease_key]["patterns"]
+                syn_display = [
+                    f"{sk} — {pats[i]['name']}" if i < len(pats) else sk
+                    for i, sk in enumerate(syn_keys)
+                ]
+            else:
+                syn_display = syn_keys
+            st.selectbox("변증 선택", syn_display, key="json_syndrome_sel")
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # AUTO-RANDOMIZE ON DISEASE/PATTERN CHANGE
@@ -126,8 +172,9 @@ if disease_changed or pattern_changed:
     st.session_state._prev_disease = st.session_state.disease
     st.session_state._prev_pattern_idx = st.session_state.pattern_idx
     
-    # Auto-randomize with the new disease/pattern (but keep disease and pattern fixed)
-    randomize_inputs(st, randomize_disease=False)
+    # Auto-randomize with the new disease/pattern (JSON probability sampling)
+    dk, mode, skey = _resolve_json_params(st.session_state)
+    generate_json_patient(st.session_state, dk, mode, skey)
     st.rerun()
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -393,8 +440,7 @@ with st.expander("➤ 추가 증상 및 동반질환", expanded=False):
     with col_add2:
         st.multiselect("추가 동반질환", FREQUENT_COMORBIDITIES, key="additional_comorbidities")
 
-# NOTE: Symptom correlation logic is still applied in the background during randomization
-# (see constraint_rules.py and symptom_correlations.py) but UI section removed for cleaner interface
+# NOTE: Patient values are sampled from JSON probability distributions
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # GENERATE BUTTON (at the end of main content)

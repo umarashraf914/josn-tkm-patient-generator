@@ -1,0 +1,1772 @@
+{
+  "_meta": {
+    "source": "Expert Guide PDF, Pages 28-37",
+    "title": "환자 증상간 상관성/인과성 반영 기준 예시 (Correlation/Causality Constraint Scales)",
+    "description": "Complete 5-point scale definitions for ALL 19 correlated variable pairs (CP_01 ~ CP_19). GREEN-SHADED cells in the original PDF indicate option combinations that are INCOMPATIBLE.",
+    "shading_rule": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임 = Shaded left and right cells are INCOMPATIBLE and must not be generated together.",
+    "total_pairs": 19,
+    "pair_range": "CP_01 ~ CP_19",
+    "merged_from": [
+      "pages_28_31",
+      "pages_32_35",
+      "pages_36_37"
+    ]
+  },
+  "constraint_pairs": [
+    {
+      "pair_id": "CP_01",
+      "title": "발열, 오한 — 한열왕래",
+      "title_en": "Fever & Chills — Alternating Fever-Chills",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "explanation": "한열왕래 means alternating between chills and fever. If a patient has PURE fever or PURE chills, they should NOT simultaneously have 한열왕래 (which is the alternating pattern). The green shading shows that high fever(left) + alternating pattern(right) at the same horizontal row are contradictory.",
+      "left_variables": [
+        {
+          "variable": "발열",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "없음, 35도 이하. 발열 증상이 전혀 없음. (저체온)"
+            },
+            {
+              "option_number": 2,
+              "description": "발열 증상이 전혀 없음. (정상 체온)"
+            },
+            {
+              "option_number": 3,
+              "description": "뚜렷한 열감이 느껴지며, 이로 인해 피로감이나 불편감이 동반됨. (약 37.4°C ~ 37.9°C)"
+            },
+            {
+              "option_number": 4,
+              "description": "몸이 뜨겁다고 느껴지고, 이로 인한 전신 근육통이나 두통이 동반됨. 활동이 힘들어 눕고 싶다는 생각이 듦. (약 38°C ~ 39.9°C)"
+            },
+            {
+              "option_number": 5,
+              "description": "몸이 불덩이처럼 뜨겁고, 어지러움이나 혼미함을 동반할 수 있으며, 일상생활이 불가능한 상태. (약 40°C 이상)"
+            }
+          ]
+        },
+        {
+          "variable": "오한",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "오한 증상이 전혀 없음."
+            },
+            {
+              "option_number": 2,
+              "description": "경미하게 춥다고 느껴져, 옷을 껴입거나 이불을 덮으려고 함. 가벼운 몸살 기운이 동반될 수 있음."
+            },
+            {
+              "option_number": 3,
+              "description": "뚜렷하게 춥다고 느껴져, 옷을 껴입거나 이불을 덮어야 함. 몸살 기운이 동반될 수 있음."
+            },
+            {
+              "option_number": 4,
+              "description": "심함, 열이 나는데도 불구하고, 몸이 떨릴 정도로 춥다고 느껴짐."
+            },
+            {
+              "option_number": 5,
+              "description": "매우 심함, 따뜻한 환경에서도 극심한 추위를 느낌. 이가 부딪히기도 하며, 일상적인 활동이 불가능한 상태."
+            }
+          ]
+        }
+      ],
+      "right_variable": {
+        "variable": "한열왕래",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 오한과 발열이 번갈아 나타나는 증상은 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "경미하게 춥다가 덥는 현상이 가끔 일어남."
+          },
+          {
+            "option_number": 3,
+            "description": "몸이 으슬으슬 춥다가, 잠시 후에는 덥다고 느껴지는 등, 체온의 조절이 불안정한 불편감이 있음."
+          },
+          {
+            "option_number": 4,
+            "description": "뚜렷한 오한(추위)이 느껴져 옷을 껴입고 싶다가, 잠시 후에는 뚜렷한 발열(더위)이 느껴져 답답해지는 증상이 번갈아 나타남."
+          },
+          {
+            "option_number": 5,
+            "description": "몸이 떨릴 정도의 오한이 명확하게 나타난 후, 땀이 날 정도의 뚜렷한 발열이 이어지는 증상이 반복됨. 일상 활동에 지장을 줌."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Pure fever + alternating pattern cannot coexist",
+          "when_left": {
+            "variable": "발열",
+            "options": [
+              3,
+              4,
+              5
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "한열왕래",
+            "options": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "발열이 있으면 한열왕래가 동시에 있으면 안됨. 한열왕래는 발열과 오한이 번갈아 나타나는 별도 패턴."
+        },
+        {
+          "rule": "Pure chills + alternating pattern cannot coexist",
+          "when_left": {
+            "variable": "오한",
+            "options": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "한열왕래",
+            "options": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "오한이 있으면 한열왕래가 동시에 있으면 안됨. 경미한 오한(2)도 포함."
+        }
+      ],
+      "compatible_note": "발열=1,2 + 한열왕래=1 is fine. 발열+오한 can co-occur with mild levels. 한열왕래 is a SEPARATE clinical pattern from standalone fever or chills."
+    },
+    {
+      "pair_id": "CP_02",
+      "title": "콧물량 — 콧물색",
+      "title_en": "Runny Nose Amount — Runny Nose Color",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "explanation": "The amount of runny nose and its color are correlated. No runny nose = no color. As amount increases, color tends to progress from clear → white → yellow. The green-shaded rows show mismatched severity levels that should not coexist.",
+      "left_variable": {
+        "variable": "콧물량",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음"
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 콧물이 약간 흐르지만, 휴지가 거의 필요 없거나 가끔 한두 번 닦아내는 정도."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 콧물이 계속 흘러 휴지를 자주 사용하게 되며, 코를 푸는 횟수가 늘어남."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 콧물이 멈추지 않고 계속 흘러내려 휴지를 달고 살아야 하며, 코를 풀어도 금방 다시 참."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 콧물이 수도꼭지처럼 쏟아져 휴지로 감당하기 어려울 정도. 코 주변 피부가 헐거나 집중이 불가능함."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "콧물색",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "투명 콧물이 나옴."
+          },
+          {
+            "option_number": 2,
+            "description": "콧물이 점차 끈적해지기 시작하며, 흰색의 콧물이 나옴."
+          },
+          {
+            "option_number": 3,
+            "description": "콧물이 누렇고 끈적하게 변함."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "No runny nose = no color at all",
+          "when_left": {
+            "variable": "콧물량",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "콧물색",
+            "options": [
+              1,
+              2,
+              3
+            ]
+          },
+          "action": "skip_generation",
+          "reason": "콧물이 없으면 콧물색 자체를 생성하지 않음"
+        }
+      ],
+      "progression_pattern": "콧물량↑ 일수록 콧물색이 투명→흰색→누런색으로 진행하는 경향"
+    },
+    {
+      "pair_id": "CP_03",
+      "title": "코막힘 — 후각감퇴",
+      "title_en": "Nasal Congestion — Olfactory Loss",
+      "explanation": "Nasal congestion and olfactory loss are positively correlated. As congestion worsens, smell ability decreases. The levels are aligned 1:1 in the table (same row = same severity).",
+      "left_variable": {
+        "variable": "코막힘",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 코막힘이 전혀 없음. 코로 숨쉬기가 매우 편안함."
+          },
+          {
+            "option_number": 2,
+            "description": "코막힘이 약간 있으나 코로 숨쉬기 편함"
+          },
+          {
+            "option_number": 3,
+            "description": "코막힘이 있고 숨쉬기 약간 불편함"
+          },
+          {
+            "option_number": 4,
+            "description": "코막힘이 분명하게 느껴지고 숨쉬기 불편함"
+          },
+          {
+            "option_number": 5,
+            "description": "양쪽 코가 심하게 막혀 코로 숨쉬기가 매우 힘듦."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "후각감퇴",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "후각에 문제 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "후각이 감퇴되었지만, 냄새를 대부분 맡을 수 있음"
+          },
+          {
+            "option_number": 3,
+            "description": "후각이 감퇴되었지만, 냄새를 맡기도 하고 못맡기도 함"
+          },
+          {
+            "option_number": 4,
+            "description": "후각이 감퇴되었지만, 강열한 냄새는 맡을 수 있음."
+          },
+          {
+            "option_number": 5,
+            "description": "후각이 감퇴됨. 냄새를 전혀 맡지 못함"
+          }
+        ]
+      },
+      "correlation_type": "positive_proportional",
+      "incompatible_combinations": [
+        {
+          "rule": "No congestion = no smell loss",
+          "when_left": {
+            "variable": "코막힘",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "후각감퇴",
+            "options": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "코막힘이 없는데 후각이 감퇴될 수 없음. 경미한 감퇴(2)도 포함."
+        }
+      ],
+      "enforcement": "Levels should be within ±1 of each other. E.g., 코막힘=3 → 후각감퇴 should be 2, 3, or 4."
+    },
+    {
+      "pair_id": "CP_04",
+      "title": "나이 — 직업, 현병력, 약물력, 술, 담배",
+      "title_en": "Age — Occupation, Medical History, Medications, Alcohol, Smoking",
+      "explanation": "Age restricts what occupations, diseases, and habits are clinically plausible. This is a multi-variable constraint where age bracket determines allowable values for several other variables.",
+      "left_variable": {
+        "variable": "나이",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "소아·청소년: ~ 19세 이하",
+            "age_range": {
+              "min": 0,
+              "max": 19
+            }
+          },
+          {
+            "option_number": 2,
+            "description": "청년: 20 ~ 39세",
+            "age_range": {
+              "min": 20,
+              "max": 39
+            }
+          },
+          {
+            "option_number": 3,
+            "description": "중년: 40 ~ 54세",
+            "age_range": {
+              "min": 40,
+              "max": 54
+            }
+          },
+          {
+            "option_number": 4,
+            "description": "장년: 55 ~ 69세",
+            "age_range": {
+              "min": 55,
+              "max": 69
+            }
+          },
+          {
+            "option_number": 5,
+            "description": "노년: 70세 이상",
+            "age_range": {
+              "min": 70,
+              "max": 120
+            }
+          }
+        ]
+      },
+      "right_variables": [
+        {
+          "variable": "직업",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "관리직"
+            },
+            {
+              "option_number": 2,
+              "description": "전문직"
+            },
+            {
+              "option_number": 3,
+              "description": "사무직"
+            },
+            {
+              "option_number": 4,
+              "description": "서비스직"
+            },
+            {
+              "option_number": 5,
+              "description": "판매직"
+            },
+            {
+              "option_number": 6,
+              "description": "농/어업"
+            },
+            {
+              "option_number": 7,
+              "description": "기능직"
+            },
+            {
+              "option_number": 8,
+              "description": "장치, 기계조작 및 조립직"
+            },
+            {
+              "option_number": 9,
+              "description": "단순노무"
+            },
+            {
+              "option_number": 10,
+              "description": "직업군인"
+            },
+            {
+              "option_number": 11,
+              "description": "(기타) 학생, 주부, 무직, 은퇴"
+            }
+          ]
+        },
+        {
+          "variable": "고혈압",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "없음 (Absent) 현재 고혈압을 진단받아 앓고 있지 않은 경우"
+            },
+            {
+              "option_number": 2,
+              "description": "있음 (Present) 현재 고혈압을 진단받아 앓고 있는 경우"
+            }
+          ]
+        },
+        {
+          "variable": "당뇨",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "없음 (Absent) 현재 당뇨를 진단받아 앓고 있지 않은 경우"
+            },
+            {
+              "option_number": 2,
+              "description": "있음 (Present) 현재 당뇨를 진단받아 앓고 있는 경우"
+            }
+          ]
+        },
+        {
+          "variable": "이상지질혈증",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "없음 (Absent) 현재 이상지질혈증을 진단받아 앓고 있지 않은 경우"
+            },
+            {
+              "option_number": 2,
+              "description": "있음 (Present) 현재 이상지질혈증을 진단받아 앓고 있는 경우"
+            }
+          ]
+        },
+        {
+          "variable": "혈압약",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "혈압약을 복용하고 있지 않다."
+            },
+            {
+              "option_number": 2,
+              "description": "혈압약을 복용하고 있다."
+            }
+          ]
+        },
+        {
+          "variable": "당뇨약",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "당뇨약을 복용하고 있지 않다."
+            },
+            {
+              "option_number": 2,
+              "description": "당뇨약을 복용하고 있다."
+            }
+          ]
+        },
+        {
+          "variable": "이상지질혈증약",
+          "options": [
+            {
+              "option_number": 1,
+              "description": "이상지질혈증약을 복용하고 있지 않다."
+            },
+            {
+              "option_number": 2,
+              "description": "이상지질혈증약을 복용하고 있다."
+            }
+          ]
+        }
+      ],
+      "incompatible_combinations": [
+        {
+          "rule": "Minors cannot have jobs",
+          "when_left": {
+            "variable": "나이",
+            "options": [
+              1
+            ]
+          },
+          "then_right_forced": {
+            "variable": "직업",
+            "forced_option": 11
+          },
+          "reason": "미성년자(19세 이하)는 직업을 가질 수 없음"
+        },
+        {
+          "rule": "Minors cannot have chronic diseases",
+          "when_left": {
+            "variable": "나이",
+            "options": [
+              1
+            ]
+          },
+          "then_right_forced": [
+            {
+              "variable": "고혈압",
+              "forced_option": 1
+            },
+            {
+              "variable": "당뇨",
+              "forced_option": 1
+            },
+            {
+              "variable": "이상지질혈증",
+              "forced_option": 1
+            }
+          ],
+          "reason": "미성년자는 만성병을 가질 수 없음"
+        },
+        {
+          "rule": "Minors cannot take chronic disease medications",
+          "when_left": {
+            "variable": "나이",
+            "options": [
+              1
+            ]
+          },
+          "then_right_forced": [
+            {
+              "variable": "혈압약",
+              "forced_option": 1
+            },
+            {
+              "variable": "당뇨약",
+              "forced_option": 1
+            },
+            {
+              "variable": "이상지질혈증약",
+              "forced_option": 1
+            }
+          ],
+          "reason": "미성년자는 만성병 약물을 복용할 수 없음"
+        }
+      ]
+    },
+    {
+      "pair_id": "CP_05",
+      "title": "음주 횟수 — 음주량",
+      "title_en": "Monthly Drinking Frequency — Amount Per Session",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "월간 음주 횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "월간 음주 횟수가 0회입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "월간 음주 횟수가 1회에서 4회 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "월간 음주 횟수가 5회에서 8회 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "월간 음주 횟수가 9회에서 15회 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "월간 음주 횟수가 16회 이상입니다."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "1회 당 음주량",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "1회 음주량이 2잔 이하입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "1회 음주량이 남성은 3~4잔, 여성은 3잔입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "1회 음주량이 남성은 5~6잔(약 1병 미만), 여성은 4잔(약 반 병)입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "1회 음주량이 남성은 7~9잔(약 1병 ~ 1병 반), 여성은 5~6잔(약 1병 미만)입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "1회 음주량이 남성은 10잔 이상(약 1병 반 이상), 여성은 7잔 이상(1병 이상)입니다."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Non-drinker cannot have maximum per-session amount",
+          "when_left": {
+            "variable": "월간 음주 횟수",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "1회 당 음주량",
+            "options": [
+              5
+            ]
+          },
+          "reason": "음주 횟수가 0회이면 1회당 음주량이 최대(5)일 수 없음"
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "음주횟수가 높을수록 1회당 음주량도 높은 경향. Levels should be within ±1-2 of each other."
+    },
+    {
+      "pair_id": "CP_06",
+      "title": "일간 흡연 개피 — 총 흡연 기간 (담배)",
+      "title_en": "Daily Cigarettes — Total Smoking Duration",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "일간 흡연 개피",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "비흡연자이거나 하루 흡연량이 0개비입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "하루 흡연량이 1개비에서 9개비 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "하루 흡연량이 10개비에서 19개비 사이입니다 (반 갑 ~ 한 갑 미만)."
+          },
+          {
+            "option_number": 4,
+            "description": "하루 흡연량이 20개비에서 29개비 사이입니다 (한 갑 ~ 한 갑 반)."
+          },
+          {
+            "option_number": 5,
+            "description": "하루 흡연량이 30개비 이상입니다 (한 갑 반 이상)."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "총 흡연 기간",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "비흡연자입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "총 흡연 기간이 1년 미만입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "총 흡연 기간이 1년에서 3년 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "총 흡연 기간이 3년에서 10년 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "총 흡연 기간이 10년 이상입니다."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Non-smoker must pair with non-smoker",
+          "when_left": {
+            "variable": "일간 흡연 개피",
+            "options": [
+              1
+            ]
+          },
+          "then_right_forced": {
+            "variable": "총 흡연 기간",
+            "forced_option": 1
+          },
+          "reason": "비흡연자(0개비)이면 총 흡연 기간도 반드시 비흡연자"
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "흡연량이 많을수록 흡연 기간도 긴 경향. 비흡연(left=1) ↔ 비흡연(right=1) 반드시 쌍으로. Smoker levels (2-5) should be within ±1-2."
+    },
+    {
+      "pair_id": "CP_07",
+      "title": "주간 운동 횟수 — 1회당 평균 운동 시간",
+      "title_en": "Weekly Exercise Frequency — Average Exercise Time Per Session",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "주간 운동 횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "주간 운동 횟수가 0회입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "주간 운동 횟수가 1회에서 2회 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "주간 운동 횟수가 3회에서 4회 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "주간 운동 횟수가 5회에서 6회 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "주간 운동 횟수가 7회 이상입니다 (매일)."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "1회당 평균 운동 시간",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "1회당 평균 운동 시간이 0분입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "1회당 평균 운동 시간이 1분에서 19분 사이입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "1회당 평균 운동 시간이 20분에서 40분 사이입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "1회당 평균 운동 시간이 41분에서 60분 사이입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "1회당 평균 운동 시간이 60분을 초과합니다."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "No exercise frequency means no exercise time",
+          "when_left": {
+            "variable": "주간 운동 횟수",
+            "options": [
+              1
+            ]
+          },
+          "then_right_forced": {
+            "variable": "1회당 평균 운동 시간",
+            "forced_option": 1
+          },
+          "reason": "운동 횟수가 0회이면 운동 시간도 반드시 0분"
+        },
+        {
+          "rule": "Active exerciser cannot have zero time",
+          "when_left": {
+            "variable": "주간 운동 횟수",
+            "options": [
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "1회당 평균 운동 시간",
+            "options": [
+              1
+            ]
+          },
+          "reason": "운동을 하면 시간이 0분일 수 없음"
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "운동 횟수 ↑ → 운동 시간도 ↑ 경향. 비운동(left=1) ↔ 비운동(right=1) 반드시 쌍으로. Exerciser levels (2-5) should be within ±1-2."
+    },
+    {
+      "pair_id": "CP_08",
+      "title": "생리주기 — 생리규칙성",
+      "title_en": "Menstrual Cycle Length — Menstrual Regularity",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "note": "Left has 5 options, right has only 4 options. This pair applies ONLY to female patients of menstruating age.",
+      "left_variable": {
+        "variable": "생리주기",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "생리 주기가 17일 이하이다."
+          },
+          {
+            "option_number": 2,
+            "description": "생리 주기가 18일에서 20일 사이이다."
+          },
+          {
+            "option_number": 3,
+            "description": "생리 주기가 21일에서 35일 사이이다."
+          },
+          {
+            "option_number": 4,
+            "description": "생리 주기가 36일에서 39일 사이이다."
+          },
+          {
+            "option_number": 5,
+            "description": "생리 주기가 40일 이상이다"
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "생리규칙성",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "3개월 이상 생리가 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "생리 주기가 2일 이내로 거의 일정함."
+          },
+          {
+            "option_number": 3,
+            "description": "생리 주기가 3~6일 정도 변동함."
+          },
+          {
+            "option_number": 4,
+            "description": "생리 주기가 7일 이상 계속 변동함."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Very short cycle is incompatible with amenorrhea",
+          "when_left": {
+            "variable": "생리주기",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "생리규칙성",
+            "options": [
+              1
+            ]
+          },
+          "reason": "주기가 17일 이하(매우 빈번)인데 3개월 이상 생리가 없다는 것은 모순"
+        },
+        {
+          "rule": "Normal or long cycle is incompatible with amenorrhea",
+          "when_left": {
+            "variable": "생리주기",
+            "options": [
+              2,
+              3,
+              4
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "생리규칙성",
+            "options": [
+              1
+            ]
+          },
+          "reason": "정상~긴 주기(18-45일)인데 3개월 이상 생리가 없다는 것은 모순. 생리주기 4도 포함."
+        }
+      ],
+      "enforcement": "정상 주기(left=3)는 규칙적(right=2) 또는 소폭 변동(right=3)과 짝. 극단적 주기(left=1,5)는 불규칙(right=3,4) 또는 무월경(right=1, 긴 주기만)과 짝."
+    },
+    {
+      "pair_id": "CP_09",
+      "title": "입맛 — 의욕저하",
+      "title_en": "Appetite — Motivation Level",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "입맛",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "식욕 없음, 음식에 대한 생각이나 욕구 자체가 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "입맛 저하, 배는 고픈 것을 느끼지만 특정 음식이 당기거나 '먹고 싶다'는 적극적인 욕구가 없는 상태."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 식사 시간이 되면 자연스럽게 배고픔을 느끼고, 음식을 맛있게 섭취함."
+          },
+          {
+            "option_number": 4,
+            "description": "식욕 좋음, 항상 입맛이 좋은 편."
+          },
+          {
+            "option_number": 5,
+            "description": "식욕 항진, 식욕이 과도하게 왕성하여 스스로 조절하는 데 어려움을 겪으며, 포만감을 느껴도 계속 먹고 싶은 충동이 있음."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "의욕저하",
+        "note": "Scale is INVERTED: option 1 = highest motivation, option 5 = lowest motivation",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 높은 편, 일상적인 활동이나 업무를 긍정적이고 능동적으로 수행하며, 의욕이 넘침"
+          },
+          {
+            "option_number": 2,
+            "description": "높은 편, 일상적인 활동이나 업무를 긍정적이고 능동적으로 수행하며, 대체로 의욕이 있는 편."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 해야 할 일은 수행하지만, 그 이상의 적극적인 의욕이나 열정은 부족한 일반적인 상태."
+          },
+          {
+            "option_number": 4,
+            "description": "저하, 매사에 의욕이 없고, 간단한 일상 활동조차 귀찮고 힘들게 느껴지며, 소극적이거나 회피하는 경향이 생김."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 저하, 의욕이 완전히 상실되어, 식사, 수면 등 기본적인 활동을 포함한 모든 일에 흥미나 관심이 없는 무기력한 상태."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "No appetite with very high motivation is contradictory",
+          "when_left": {
+            "variable": "입맛",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "의욕저하",
+            "options": [
+              1
+            ]
+          },
+          "reason": "식욕이 전혀 없는 사람이 의욕이 매우 높을 수 없음."
+        }
+      ],
+      "correlation_type": "inverse_scale_alignment",
+      "enforcement": "입맛과 의욕은 같은 방향으로 움직임 (식욕↓ = 의욕↓, 식욕↑ = 의욕↑). 단, 의욕저하 scale은 역순(1=최고, 5=최저)이므로: 입맛 low(1,2) → 의욕저하 high number(4,5). 입맛 high(4,5) → 의욕저하 low number(1,2). Within ±1 level when adjusted for inverse scale."
+    },
+    {
+      "pair_id": "CP_10",
+      "title": "1일 식사횟수 — 식사규칙성",
+      "title_en": "Daily Meal Count — Meal Regularity",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "1일 식사횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "하루 식사 횟수가 1회입니다."
+          },
+          {
+            "option_number": 2,
+            "description": "하루 식사 횟수가 2회입니다."
+          },
+          {
+            "option_number": 3,
+            "description": "하루 식사 횟수가 3회입니다."
+          },
+          {
+            "option_number": 4,
+            "description": "하루 식사 횟수가 4회입니다."
+          },
+          {
+            "option_number": 5,
+            "description": "하루 식사 횟수가 5회 이상이며, 소식(小食)으로 조금씩 자주 먹는 편입니다."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "식사규칙성",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 규칙적"
+          },
+          {
+            "option_number": 2,
+            "description": "규칙적, 거의 정해진 시간에 규칙적으로 식사함."
+          },
+          {
+            "option_number": 3,
+            "description": "왔다갔다 함. 식사 시간이 규칙적이다가 불규칙적이다가 함"
+          },
+          {
+            "option_number": 4,
+            "description": "불규칙, 주로 아침을 거르고 점심, 저녁에 과식하는 경향."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 불규칙, 식사 시간이 매일 다르고 폭식과 결식을 반복함."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "1 meal per day is incompatible with very regular",
+          "when_left": {
+            "variable": "1일 식사횟수",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "식사규칙성",
+            "options": [
+              1
+            ]
+          },
+          "reason": "하루 1회 식사는 매우 규칙적일 수 없음."
+        }
+      ],
+      "correlation_type": "contextual",
+      "enforcement": "식사횟수=3 → 규칙적(1,2) 경향. 식사횟수=1 → 불규칙(4,5). 식사횟수=5(소식) → 규칙적일 수도, 불규칙적일 수도 있음."
+    },
+    {
+      "pair_id": "CP_11",
+      "title": "배변 후 불편감 — 배변 후 잔변감(강도)",
+      "title_en": "Post-Defecation Discomfort — Post-Defecation Residual Stool Sensation (Intensity)",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "배변 후 불편감",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "배변 후 느낌이 매우 상쾌하다."
+          },
+          {
+            "option_number": 2,
+            "description": "배변 후 느낌이 상쾌하다."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 배변 후 느낌이 불쾌하지도 상쾌하지도 않다."
+          },
+          {
+            "option_number": 4,
+            "description": "배변 후 느낌이 불쾌하고 어딘가 모르게 시원치 않다."
+          },
+          {
+            "option_number": 5,
+            "description": "배변 후 느낌이 매우 불쾌하고 시원치 않다."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "배변 후 잔변감(강도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 배변 후 불편감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 불편감, 약간 덜 본 것 같은 찝찝한 느낌이 들지만, 금방 잊어버리는 수준."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 불편감, 변이 남아있는 느낌이 분명하게 느껴져, 화장실에 더 앉아있게 되거나 일상 중에도 신경이 쓰임."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 불쾌감, 다시 화장실에 가고 싶다는 생각이 들 정도로 불쾌감이 심하며, 복부 팽만감이나 불편함을 동반함."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한 불쾌감, 화장실을 다녀와도 전혀 변을 보지 않은 것처럼 느껴질 정도로 극심한 불쾌감을 느끼며, 아무것도 할 수 없는 상태."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Very refreshed post-defecation with residual sensation is contradictory",
+          "when_left": {
+            "variable": "배변 후 불편감",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "배변 후 잔변감(강도)",
+            "options": [
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "배변 후 매우 상쾌한데 중등도 이상 잔변감이 있을 수 없음."
+        },
+        {
+          "rule": "Refreshed post-defecation with moderate+ residual is contradictory",
+          "when_left": {
+            "variable": "배변 후 불편감",
+            "options": [
+              2
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "배변 후 잔변감(강도)",
+            "options": [
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "상쾌한데 중등도 이상 잔변감이 있을 수 없음."
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "Levels should be within ±1 of each other. 불편감↑ → 잔변감↑. 배변후불편감=1(매우상쾌) → 잔변감=1,2. 배변후불편감=5(매우불쾌) → 잔변감=4,5."
+    },
+    {
+      "pair_id": "CP_12",
+      "title": "1일 소변 횟수 — 야간뇨 횟수",
+      "title_en": "Daily Urination Count (incl. nocturia) — Nocturia Count",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "1일 소변 횟수(야간뇨 포함)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "1일 소변 횟수가 0회에서 2회 사이이다."
+          },
+          {
+            "option_number": 2,
+            "description": "1일 소변 횟수가 3회에서 4회 사이이다."
+          },
+          {
+            "option_number": 3,
+            "description": "1일 소변 횟수가 5회에서 7회 사이이다."
+          },
+          {
+            "option_number": 4,
+            "description": "1일 소변 횟수가 8회에서 10회 사이이다."
+          },
+          {
+            "option_number": 5,
+            "description": "1일 소변 횟수가 11회 이상이다."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "야간뇨 횟수",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "정상, 야간뇨 횟수가 0회이다."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 야간뇨 횟수가 1회이다."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 야간뇨 횟수가 2회이다."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 야간뇨 횟수가 3회에서 4회 사이이다."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 야간뇨 횟수가 5회 이상이다."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Very low total urination cannot have high nocturia",
+          "when_left": {
+            "variable": "1일 소변 횟수(야간뇨 포함)",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "야간뇨 횟수",
+            "options": [
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "총 소변이 0~2회인데 야간뇨만 2회 이상일 수 없음 (야간뇨는 총 소변에 포함됨)."
+        }
+      ],
+      "correlation_type": "subset_constraint",
+      "enforcement": "야간뇨 is a SUBSET of total urination. Total↑ → nocturia can be higher. But nocturia can never exceed total. Low total (1,2) → low nocturia only."
+    },
+    {
+      "pair_id": "CP_13",
+      "title": "소변 후 불편감 — 배뇨 후 잔뇨감(강도)",
+      "title_en": "Post-Urination Discomfort — Post-Urination Residual Urine Sensation (Intensity)",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "소변 후 불편감",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "소변 후 느낌이 매우 상쾌하다."
+          },
+          {
+            "option_number": 2,
+            "description": "소변 후 느낌이 상쾌하다."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 소변 후 느낌이 불쾌하지도 상쾌하지도 않다."
+          },
+          {
+            "option_number": 4,
+            "description": "소변 후 느낌이 불쾌하다."
+          },
+          {
+            "option_number": 5,
+            "description": "소변 후 느낌이 매우 불쾌하다."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "배뇨 후 잔뇨감(강도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 잔뇨감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 잔뇨감, 소변이 약간 덜 나온 것 같은 찝찝한 느낌이 들지만, 금방 잊어버리는 수준."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 잔뇨감, 소변이 남아있는 느낌이 분명하게 느껴져, 화장실에 더 머무르거나 일상 중에도 신경이 쓰임."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 잔뇨감, 소변을 본 직후에도 다시 화장실에 가고 싶다는 생각이 들 정도로 잔뇨감이 심하며, 아랫배의 불편함을 동반함."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한잔뇨감, 소변을 전혀 보지 않은 것처럼 느껴질 정도로 극심한 불쾌감을 느끼며, 아무것도 할 수 없는 상태."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Very refreshed post-urination with residual sensation is contradictory",
+          "when_left": {
+            "variable": "소변 후 불편감",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "배뇨 후 잔뇨감(강도)",
+            "options": [
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "소변 후 매우 상쾌한데 중등도 이상 잔뇨감이 있을 수 없음."
+        },
+        {
+          "rule": "Refreshed post-urination with moderate+ residual is contradictory",
+          "when_left": {
+            "variable": "소변 후 불편감",
+            "options": [
+              2
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "배뇨 후 잔뇨감(강도)",
+            "options": [
+              3,
+              4,
+              5
+            ]
+          },
+          "reason": "상쾌한데 중등도 이상 잔뇨감이 있을 수 없음."
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "Levels should be within ±1 of each other. 불편감↑ → 잔뇨감↑. 소변후불편감=1(매우상쾌) → 잔뇨감=1,2. 소변후불편감=5(매우불쾌) → 잔뇨감=4,5."
+    },
+    {
+      "pair_id": "CP_14",
+      "title": "체력강약 — 피로감",
+      "title_en": "Physical Strength — Fatigue Level",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "체력강약",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 약함, 항상 무기력하고 조금만 움직여도 숨이 참. 얼굴이 창백하고 어지럼증을 자주 느낌."
+          },
+          {
+            "option_number": 2,
+            "description": "약한 편, 평소 기운이 없고 쉽게 피로해짐. 식욕이 없거나 식후에 잘 졸리고, 목소리에 힘이 없음."
+          },
+          {
+            "option_number": 3,
+            "description": "보통, 일상생활에 필요한 체력을 가지고 있으며, 피로하면 휴식 후 잘 회복됨."
+          },
+          {
+            "option_number": 4,
+            "description": "강한 편, 활력이 넘치고, 웬만해서는 잘 지치지 않음. 잔병치레가 거의 없고 회복이 빠름."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 강함, 체격이 건실하고 에너지가 넘쳐 주체하기 어려울 정도. 목소리가 매우 크고 우렁참."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "피로감",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "거의 없음, 피로를 거의 느끼지 않으며, 아침에 일어날 때 몸이 개운하고 활력이 넘치는 최상의 컨디션 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 일상생활에 큰 지장은 없으나 가벼운 피로가 있음."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 아침에 일어날 때부터 개운하지 않고, 하루 종일 전반적인 피로감이 지속됨. 일상생활은 가능하지만 의욕이나 집중력이 다소 저하됨."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 피로감이 심하여 뚜렷한 집중력 저하를 느끼며, 업무나 학업 등 일상적인 활동을 수행하는 것이 힘겹게 느껴짐."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 극심한 피로와 무기력감으로 인해 일상생활을 영위하는 것 자체가 어려움. 잠을 자거나 푹 쉬어도 피로가 전혀 회복되지 않는 느낌."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Very weak + no fatigue is contradictory",
+          "when_left": {
+            "variable": "체력강약",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "피로감",
+            "options": [
+              1
+            ]
+          },
+          "reason": "매우 약한 체력인데 피로가 거의 없을 수 없음."
+        }
+      ],
+      "correlation_type": "inverse_proportional",
+      "enforcement": "체력↑ → 피로감↓ (inverse relationship). 체력강약=1(매우약) → 피로감=4,5(심함이상). 체력강약=5(매우강) → 피로감=1,2(거의없음~경미). Within inverse ±1 level."
+    },
+    {
+      "pair_id": "CP_15",
+      "title": "신체통, 근육통 — 신중(身重) 여부",
+      "title_en": "Body Pain / Muscle Pain — Heaviness of Body",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "신체통, 근육통 여부",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 몸살 기운이나 전신 통증을 전혀 느끼지 않음."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 일시적으로 몸이 뻐근하거나 약간 무거운 느낌이 들지만, 휴식 후 완전히 회복됨. 일상생활 지장 없음."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 특별한 활동 없이도 몸이 찌뿌둥하거나 무겁고(예: 젖은 솜이 가라앉는 느낌), 여기저기 가벼운 통증이 느껴짐. 활동에 약간의 불편감을 줌."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 전신 근육통이나 몸살 기운이 뚜렷하며, 몸이 매우 무겁게 느껴져 활동하기가 힘듦. 집중력 저하 등을 동반하여 일상생활에 제약을 받음."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 극심한 전신 통증이나 몸살 기운, 혹은 몸을 가누기 힘들 정도의 무거움으로 인해, 기본적인 일상 활동조차 어려운 상태."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "신중(身重) 여부",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 몸이 상쾌함"
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 많이 걷거나 피곤할 때 잠깐 몸이 무거우며, 휴식 후 완전히 회복됨."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 피곤한 날 몸이 무거우며, 일상 중 불편감을 느낌."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 몸이 무겁고 불편함을 뚜렷하게 느낌."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 몸이 매우 무겁고 삶의 질에 큰 지장을 줌."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "No body pain with severe heaviness is contradictory",
+          "when_left": {
+            "variable": "신체통, 근육통 여부",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "신중(身重) 여부",
+            "options": [
+              4,
+              5
+            ]
+          },
+          "reason": "몸살 기운이 전혀 없는데 몸이 심하게 무거울 수 없음."
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "Levels should be within ±1 of each other. 신체통↑ → 신중↑. 통증=1(없음) → 신중=1,2. 통증=5(매우심함) → 신중=4,5."
+    },
+    {
+      "pair_id": "CP_16",
+      "title": "피부 건조도 — 얼굴 광택",
+      "title_en": "Skin Dryness — Facial Luster/Glow",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "피부 건조도",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "정상, 피부에 당김이나 건조함이 전혀 없으며, 피부결이 매끄럽고 편안한 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미, 겉으로는 괜찮아 보이나, 세안 후나 특정 환경에서 피부 속이 당기는 느낌(속당김)이 듦."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도, 피부 표면이 당기는 것이 뚜렷하게 느껴지며, 입가나 뺨 주변에 미세한 각질이 하얗게 일어나기 시작함."
+          },
+          {
+            "option_number": 4,
+            "description": "심함, 피부가 건조하여 각질이 눈에 띄게 일어나고 피부가 거칠어짐."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심함, 피부가 매우 건조하여, 하얀 각질을 넘어 피부 표면이 갈라짐(균열)"
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "얼굴 광택",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "윤기없음, 얼굴에 생기나 광택이 전혀 없고, 피부가 푸석푸석해 보이며 메마른 느낌을 줌."
+          },
+          {
+            "option_number": 2,
+            "description": "윤기가 약간 있음, 피부가 전반적으로 칙칙하고 생기가 부족하지만, 아주 약간의 광택은 남아있는 상태."
+          },
+          {
+            "option_number": 3,
+            "description": "윤기가 보통, 피부에 자연스럽고 건강한 광택이 도는 상태. 푸석하지도, 번들거리지도 않는 평균적인 상태."
+          },
+          {
+            "option_number": 4,
+            "description": "윤기가 충만함, 피부가 건강하게 빛나며, 맑고 생기가 넘쳐 보임. 촉촉하고 광택이 도는 상태."
+          },
+          {
+            "option_number": 5,
+            "description": "윤기가 매우 충만함, 얼굴에서 빛이 나는 것처럼 광택이 매우 풍부하고, 누가 봐도 아주 건강하고 활력이 넘쳐 보이는 상태."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Very dry skin with full luster is contradictory",
+          "when_left": {
+            "variable": "피부 건조도",
+            "options": [
+              5
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "얼굴 광택",
+            "options": [
+              4,
+              5
+            ]
+          },
+          "reason": "피부 표면이 갈라질 정도로 건조하면 윤기가 충만할 수 없음."
+        }
+      ],
+      "correlation_type": "inverse_proportional",
+      "enforcement": "건조도↑ → 광택↓ (inverse relationship). 건조도=1(정상) → 광택=3,4,5. 건조도=5(매우건조) → 광택=1,2. Within inverse ±1 level."
+    },
+    {
+      "pair_id": "CP_17",
+      "title": "이명(빈도) — 이명(강도)",
+      "title_en": "Tinnitus Frequency — Tinnitus Intensity",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "section_header": "통증의 빈도와 강도관계",
+      "left_variable": {
+        "variable": "이명(빈도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 이명을 전혀 느끼지 않음."
+          },
+          {
+            "option_number": 2,
+            "description": "일시적, 매우 피곤하거나, 아주 조용한 곳에 있을 때만 잠깐 나타나며, 금방 사라짐."
+          },
+          {
+            "option_number": 3,
+            "description": "간헐적, 주기적으로(주 1~3회) 이명이 느껴지지만, 일상생활에 큰 지장은 없음."
+          },
+          {
+            "option_number": 4,
+            "description": "지속적, 거의 매일 이명을 느끼며, 이로 인해 소리나 증상에 신경이 쓰이고 제약을 받음."
+          },
+          {
+            "option_number": 5,
+            "description": "만성적, 깨어있는 시간 내내 이명이 지속되어, 소리, 수면 등 삶의 질 전반에 큰 영향을 줌."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "이명(강도)",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 불편감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 불편감, 이명 소리가 매우 작아서, 아주 조용한 환경에서 집중할 때만 의식되는 수준."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 불편감, 일상적인 소음 속에서도 이명이 의식되며, 이로 인해 집중력이 다소 저하되고 약간의 신경이 쓰임."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 불쾌감, 이명 소리가 커서 다른 소리를 듣는 데 방해가 되거나, 수면을 방해하고, 뚜렷한 스트레스를 유발함."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한 불쾌감, 참을 수 없을 정도로 이명 소리가 크거나 거슬려, 다른 생각이나 활동이 불가능하고, 극심한 고통이나 불안감을 유발함."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "No tinnitus frequency with severe intensity is contradictory",
+          "when_left": {
+            "variable": "이명(빈도)",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "이명(강도)",
+            "options": [
+              4,
+              5
+            ]
+          },
+          "reason": "이명이 전혀 없으면 심한 강도일 수 없음."
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "빈도↑ → 강도↑. 없음(left=1) ↔ 없음(right=1) 반드시 쌍으로. Levels should be within ±1 of each other."
+    },
+    {
+      "pair_id": "CP_18",
+      "title": "전복부 통증 — 복통의 양상",
+      "title_en": "Anterior Abdominal Pain Severity — Abdominal Pain Type",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "전복부통증",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "없음, 통증이나 불편감이 전혀 없는 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "경미한 통증, 신경은 쓰이지만, 일상생활이나 업무에 거의 지장을 주지 않는 가벼운 통증."
+          },
+          {
+            "option_number": 3,
+            "description": "중등도 통증, 통증이 계속 의식되며, 이로 인해 집중력이 다소 저하되고 일상생활에 약간의 지장을 줌."
+          },
+          {
+            "option_number": 4,
+            "description": "심한 통증, 통증이 매우 심하여 다른 생각을 하기 어렵고, 일상적인 활동을 지속하기 힘듦."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 심한 통증, 참을 수 없을 정도로 극심한 통증으로, 아무것도 할 수 없는 상태."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "복통의 양상",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "당기듯이 아프다"
+          },
+          {
+            "option_number": 2,
+            "description": "찌르듯이 아프다"
+          },
+          {
+            "option_number": 3,
+            "description": "배가 무겁다"
+          },
+          {
+            "option_number": 4,
+            "description": "쑤시듯이 아프다"
+          },
+          {
+            "option_number": 5,
+            "description": "차고 시리듯이 아프다"
+          },
+          {
+            "option_number": 6,
+            "description": "통증이 돌아다닌다"
+          },
+          {
+            "option_number": 7,
+            "description": "통증이 특정부위로 고정되어 있다"
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "No abdominal pain means no pain type can be selected",
+          "when_left": {
+            "variable": "전복부통증",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "복통의 양상",
+            "options": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          },
+          "reason": "전복부통증=1(없음)일 때 복통의 양상을 가질 수 없음. 통증이 없으면 어떤 통증 유형도 선택 불가."
+        }
+      ],
+      "correlation_type": "conditional",
+      "enforcement": "전복부통증(5단계 중증도)과 복통의 양상(7가지 통증 유형)의 관계. 통증이 있을 때(좌측 2~5)만 복통 양상 선택 가능. 녹색 셀: 좌측 option 1, 우측 options 1~7 전체."
+    },
+    {
+      "pair_id": "CP_19",
+      "title": "정신상태 (득신/실신) — 기억력 저하",
+      "title_en": "Mental Clarity — Memory Decline",
+      "incompatibility_note": "색칠된 왼쪽과 오른쪽 셀끼리 양립이 어려워 보임",
+      "left_variable": {
+        "variable": "정신상태",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 맑음, 정신이 매우 맑고 깨끗하며, 머리가 상쾌하고 집중력이 높은 최상의 상태."
+          },
+          {
+            "option_number": 2,
+            "description": "대체로 맑음, 정신이 대체로 맑고 깨끗한 편이나, 피곤하거나 스트레스를 받으면 가끔 멍해지거나 깜빡 잊어버릴 때가 있음."
+          },
+          {
+            "option_number": 3,
+            "description": "경미한 혼미, 정신이 안개 낀 것처럼 가끔 흐려지고, 생각이 잘 정리되지 않으며, 사소한 일을 자주 깜빡함."
+          },
+          {
+            "option_number": 4,
+            "description": "중등도 혼미, 정신이 자주 흐릿하고 멍한 상태가 지속됨. 이로 인해 집중력에 뚜렷한 저하를 느끼며, 업무나 학업 등 일상생활에 지장을 받음."
+          },
+          {
+            "option_number": 5,
+            "description": "심한 혼미, 정신이 매우 흐릿하고 혼미하여, 사고나 판단이 어려움. 의식이 몽롱하여 일상생활을 영위하는 것 자체가 어려움."
+          }
+        ]
+      },
+      "right_variable": {
+        "variable": "기억력저하",
+        "options": [
+          {
+            "option_number": 1,
+            "description": "매우 좋음, 기억력에 전혀 문제가 없음."
+          },
+          {
+            "option_number": 2,
+            "description": "좋음, 기억력에 문제가 없음."
+          },
+          {
+            "option_number": 3,
+            "description": "약간 나쁨, 깜빡하는 횟수가 뚜렷하게 늘었다고 스스로 인지하며(예: 약속, 사람 이름), 이로 인해 메모나 알람에 의존하게 됨."
+          },
+          {
+            "option_number": 4,
+            "description": "나쁨, 중요한 약속이나 최근 대화 내용을 잊어버리는 등, 기억력 저하로 인해 업무나 일상적인 활동에 뚜렷한 지장을 받음."
+          },
+          {
+            "option_number": 5,
+            "description": "매우 나쁨, 방금 일어난 일이나 익숙한 정보(예: 가족 이름)도 기억하기 어려움."
+          }
+        ]
+      },
+      "incompatible_combinations": [
+        {
+          "rule": "Clear mind cannot pair with severe memory loss",
+          "when_left": {
+            "variable": "정신상태",
+            "options": [
+              1
+            ]
+          },
+          "then_right_excluded": {
+            "variable": "기억력저하",
+            "options": [
+              4,
+              5
+            ]
+          },
+          "reason": "정신이 매우 맑은데 기억력이 나쁨 또는 매우 나쁨일 수 없음."
+        }
+      ],
+      "correlation_type": "positive_proportional",
+      "enforcement": "정신상태↑ → 기억력↑, 정신상태↓ → 기억력↓. Levels should be within ±1-2 of each other. 녹색 셀: 좌측 1↔우측 4,5 / 좌측 2↔우측 5 / 좌측 4↔우측 1 / 좌측 5↔우측 1,2."
+    }
+  ]
+}
