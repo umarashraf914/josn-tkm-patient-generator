@@ -1708,7 +1708,7 @@
     {
       "section": "현병력",
       "subcategory": null,
-      "variable": "고혈압",
+      "variable": "str",
       "num_options": 2,
       "general_sum": 1.0,
       "general_OK": true,

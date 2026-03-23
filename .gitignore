@@ -18,3 +18,4 @@ venv/
 # Local files
 share_app.py
 *.log
+output/

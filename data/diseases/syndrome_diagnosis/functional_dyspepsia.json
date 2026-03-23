@@ -10862,7 +10862,7 @@
           "description": "심함, 피로감이 심하여 뚜렷한 집중력 저하를 느끼며, 업무나 학업 등 일상적인 활동을 수행하는 것이 힘겹게 느껴짐.",
           "original_probabilities": {
             "syndrome_1": null,
-            "syndrome_2": null,
+            "syndrome_2": 0.1,
             "syndrome_3": 0.1,
             "syndrome_4": 0.1,
             "syndrome_5": null,
@@ -10873,9 +10873,9 @@
           },
           "normalized_probabilities": {
             "syndrome_1": null,
-            "syndrome_2": null,
-            "syndrome_3": 0.5,
-            "syndrome_4": 0.5,
+            "syndrome_2": 0.333,
+            "syndrome_3": 0.333,
+            "syndrome_4": 0.333,
             "syndrome_5": null,
             "syndrome_6": null,
             "syndrome_7": null,

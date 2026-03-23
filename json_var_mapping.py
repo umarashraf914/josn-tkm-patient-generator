@@ -405,6 +405,15 @@ VAR_MAP = {
     "의욕": ("motivation", SCALE, None),
     "스트레스 대처력": ("stress_coping", SCALE, None),
     "감정 기복": ("mood_swing", SCALE, None),
+
+    # ─── Shared ENT / Exam vars (appear in multiple disease JSONs) ───
+    "코막힘": ("nose_block_sev", SCALE, None),
+    "후각 감퇴": ("smell_reduction", SCALE, None),
+    "코 건조함": ("nose_dry", SCALE, {1: 0, 2: 1, 3: 3, 4: 5}),
+    "콧물 색": ("snot_color", CAT, {
+        1: "맑은색", 2: "흰색", 3: "노란색"
+    }),
+    "X-ray 검사": ("exam_xray", BOOL2, {1: True, 2: False}),
 }
 
 # ══════════════════════════════════════════════════════════════
@@ -468,9 +477,6 @@ VAR_MAP_COLD = {
     "오한": ("chills_sev", SCALE, None),
     "한열왕래": ("alternating_chills_fever", SCALE, None),
     "콧물 감기": ("snot_sev", SCALE, None),
-    "코막힘": ("nose_block_sev", SCALE, None),
-    "후각 감퇴": ("smell_reduction", SCALE, None),
-    "코 건조함": ("nose_dry", SCALE, {1: 0, 2: 1, 3: 3, 4: 5}),
     "재채기": ("sneeze_sev", SCALE, None),
     "기침": ("cough_sev", SCALE, None),
     "몸살, 신체통, 근육통": ("body_ache_cold", SCALE, None),
@@ -492,7 +498,6 @@ VAR_MAP_COLD = {
     "편도진찰": ("exam_tonsil", CAT, {
         1: "정상", 2: "약간비대", 3: "비대", 4: "심한비대"
     }),
-    "X-ray 검사": ("exam_xray", BOOL2, {1: True, 2: False}),
     "이경 검사": ("exam_otoscope", BOOL2, {1: True, 2: False}),
     "비경 검사": ("exam_rhinoscope", BOOL2, {1: True, 2: False}),
     "혈액검사": ("exam_blood_test", BOOL2, {1: True, 2: False}),
@@ -505,9 +510,6 @@ VAR_MAP_RHINITIS = {
     }),
     "과거 알러지비염 경험": ("rhinitis_past", BOOL2, {1: True, 2: False}),
     "콧물 량": ("snot_sev", SCALE, None),
-    "콧물 색": ("snot_color", CAT, {
-        1: "맑은색", 2: "흰색", 3: "노란색"
-    }),
     "재채기(정도)": ("sneeze_sev", SCALE, None),
     "재채기(빈도)": ("sneeze_freq", SCALE, None),
     "코 가려움": ("nose_itch_sev", SCALE, None),
@@ -517,6 +519,10 @@ VAR_MAP_RHINITIS = {
     }),
     "비경검사(점막이 부어있으면 안됨)": ("exam_rhinoscope_finding", CAT, {
         1: "정상", 2: "이상"
+    }),
+    "평소 감기걸렸을 때 문제되는 부위": ("past_cold_problem_area", LIST_CAT, {
+        1: "모름", 2: "머리부위증상", 3: "코부위증상", 4: "기침",
+        5: "인후통", 6: "열감기", 7: "몸살"
     }),
 }
 
@@ -564,6 +570,7 @@ VAR_MAP_BACKPAIN = {
     "하지직거상검사": ("slr_test", BOOL2, {1: True, 2: False}),
     "CT 검사": ("exam_ct", BOOL2, {1: True, 2: False}),
     "MRI 검사": ("exam_mri", BOOL2, {1: True, 2: False}),
+    "X-ray 검사": ("exam_xray", BOOL2, {1: True, 2: False}),
 }
 
 # ══════════════════════════════════════════════════════════════
@@ -571,26 +578,30 @@ VAR_MAP_BACKPAIN = {
 # ══════════════════════════════════════════════════════════════
 DISEASE_FILES = {
     "감기": {
-        "general": "data/diseases/vertical_general_probs/common_cold_general_probs.json",
-        "syndrome": "data/diseases/horizontal_syndrome_probs/common_cold_syndrome_probs.json",
+        "general": "data/diseases/general_sampling/common_cold.json",
+        "syndrome": "data/diseases/syndrome_sampling/common_cold.json",
+        "diagnosis": "data/diseases/syndrome_diagnosis/common_cold.json",
         "code": "J06",
         "label": "감기/급성상기도감염",
     },
     "알레르기비염": {
-        "general": "data/diseases/vertical_general_probs/allergic_rhinitis_general_probs.json",
-        "syndrome": "data/diseases/horizontal_syndrome_probs/allergic_rhinitis_syndrome_probs.json",
+        "general": "data/diseases/general_sampling/allergic_rhinitis.json",
+        "syndrome": "data/diseases/syndrome_sampling/allergic_rhinitis.json",
+        "diagnosis": "data/diseases/syndrome_diagnosis/allergic_rhinitis.json",
         "code": "J30",
         "label": "알레르기비염",
     },
     "기능성소화불량": {
-        "general": "data/diseases/vertical_general_probs/functional_dyspepsia_general_probs.json",
-        "syndrome": "data/diseases/horizontal_syndrome_probs/functional_dyspepsia_syndrome_probs.json",
+        "general": "data/diseases/general_sampling/functional_dyspepsia.json",
+        "syndrome": "data/diseases/syndrome_sampling/functional_dyspepsia.json",
+        "diagnosis": "data/diseases/syndrome_diagnosis/functional_dyspepsia.json",
         "code": "K30",
         "label": "기능성소화불량",
     },
     "요통": {
-        "general": "data/diseases/vertical_general_probs/lower_back_pain_general_probs.json",
-        "syndrome": "data/diseases/horizontal_syndrome_probs/lower_back_pain_syndrome_probs.json",
+        "general": "data/diseases/general_sampling/lower_back_pain.json",
+        "syndrome": "data/diseases/syndrome_sampling/lower_back_pain.json",
+        "diagnosis": "data/diseases/syndrome_diagnosis/lower_back_pain.json",
         "code": "M54",
         "label": "요통",
     },

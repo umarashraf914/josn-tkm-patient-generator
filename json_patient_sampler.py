@@ -193,7 +193,7 @@ def sample_general_patient(disease_key):
 
 
 # ══════════════════════════════════════════════════════════════
-# Part 2: Syndrome (horizontal) sampling + Correlation constraints
+# Part 2: Syndrome sampling + Correlation constraints
 # ══════════════════════════════════════════════════════════════
 
 def get_syndrome_keys(disease_key):
@@ -203,9 +203,10 @@ def get_syndrome_keys(disease_key):
 
 
 def sample_syndrome_patient(disease_key, syndrome_key):
-    """Sample a patient for a specific syndrome using horizontal probs.
+    """Sample a patient for a specific syndrome using vertical syndrome probs.
     
-    Uses normalized_probabilities from horizontal syndrome files.
+    Uses normalized_probabilities from syndrome_sampling files
+    (column-normalized: P(option|syndrome), columns sum to 1.0).
     Returns dict of {session_key: value} pairs.
     """
     _, syn_data = load_disease_data(disease_key)
